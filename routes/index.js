@@ -1,14 +1,88 @@
 var express = require('express');
 var router = express.Router();
+var mongojs = require('mongojs');
+var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['Category']);
+var Category= require("../models/Category");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+
+router.route("/").get(function (req, res) {
+  res.render("homepage");
+})
+
+router.route("/prodDesc").get(function (req, res) {
+  res.render("lenden_pd");
+})
+
+
+router.route("/shoppingcart").get(function (req, res) {
+  res.render("navbar");
+})
+
+ 
+router.route("/subcat").get(function (req, res) {
+  res.render("subcat_filters");
+})
+
+router.get('/home', function(req,res,next){
+  // var catsamp=new Category({Cat_id: 2, CategoryName: "Electronics", Subcategories: "1,4,2", CategoryImage:"ashddias"});
+  // console.log("CAtsamap=",catsmap); 
+  // catsmap.save(function(err){
+  //   if(err){
+  //     console.log("Error Occured:- ",err);
+  //   }
+  //   console.log("New Author= "+catsamp);
+  //   res.send("Yo");
+  //   // Category.push(catsamp);
+  // })
+  // res.send("Yolo");
+  // db.Category.save(catsmap,function(err,categories){
+    // if(err){
+  //     res.status(400);
+  //     res.json({
+  //         "error": err
+  //     });
+  //   }
+  //   else{
+  //     res.json(categories);
+  //   }
+  // })
+ res.send("homepage");
 });
 
 
-router.get('/home', function(req,res,next){
-  res.send("Yolo");
-})
+router.get('/Category', function(req, res, next){
+  db.Category.find(function(err, Category){
+      if(err){
+          res.send(err);
+      }
+      res.json(Category);
+  });
+});
+
+// Get Single Category
+router.get('/Category/:id', function(req, res, next){
+  db.Category.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, Category){
+      if(err){
+          res.send(err);
+      }
+      res.json(Category);
+  });
+});
+
+router.post('/addCategory', function(req, res, next){
+  var task = req.body;
+      db.Category.save(task, function(err, task){
+          if(err){
+              res.send(err);
+          }
+          res.json(task);
+      });
+});
+
+
+
+
+
+
 
 module.exports = router;

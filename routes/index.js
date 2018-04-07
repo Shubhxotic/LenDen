@@ -61,10 +61,4 @@ router.post('/addCategory', function(req, res, next){
       });
 });
 
-
-
-
-
-
-
 module.exports = router;

@@ -4,31 +4,7 @@ var mongojs = require('mongojs');
 var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['Category']);
 var Category= require("../models/Category");
 
-
-router.route("/").get(function (req, res) {
-  res.render("homepage");
-})
-
-router.route("/prodDesc").get(function (req, res) {
-  res.render("lenden_pd");
-})
-
-
-router.route("/shoppingcart").get(function (req, res) {
-  res.render("navbar");
-})
-
- 
-router.route("/subcat").get(function (req, res) {
-  res.render("subcat_filters");
-})
-
-router.get('/home', function(req,res,next){
- res.render("index");
-});
-
-
-router.get('/Category', function(req, res, next){
+router.get('/xyz', function(req, res, next){
   db.Category.find(function(err, Category){
       if(err){
           res.send(err);
@@ -60,11 +36,6 @@ router.post('/addCategory', function(req, res, next){
           res.json(task);
       });
 });
-
-
-
-
-
 
 
 module.exports = router;

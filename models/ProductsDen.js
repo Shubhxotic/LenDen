@@ -32,4 +32,4 @@ const productsDenSchema = mongoose.Schema({
 	}
 });
 
-const ProductsDen = module.exports = mongoose.model('ProductsDen', productDenSchema);
+const ProductsDen = module.exports = mongoose.model('ProductsDen', productsDenSchema);

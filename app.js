@@ -6,24 +6,32 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 
+var mongoose= require('mongoose');
+mongoose.connect("mongodb://lendenuser:lenden@123@ds237389.mlab.com:37389/lenden");
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var category=require('./routes/categories');
 
 var app = express();
 
-//Set up mongoose connection
-var mongoose = require('mongoose');
-var mongoDB = 'mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden';
-mongoose.connect(mongoDB);
-mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
+app.engine('handlebars', exphbs({
+	defaultLayout: 'main',
+	helpers: {
+	    toJSON : function(object) {
+	      return JSON.stringify(object, null, 4);
+	    }
+  	}
+	})
+);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
-
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -34,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-
+// app.use('/catergory',category);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -51,8 +59,12 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
 });
+
+app.listen(3000,function(){
+  console.log("Listening on port 3000 :)");
+})
 
 module.exports = app;
 

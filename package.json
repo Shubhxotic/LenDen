@@ -10,8 +10,13 @@
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "ejs": "^2.5.8",
     "express": "~4.15.5",
     "express-handlebars": "^3.0.0",
+<<<<<<< HEAD
+=======
+    "mongojs": "^2.5.0",
+>>>>>>> 15b05871365e88447edf92b33fa45c2a7c20580d
     "mongoose": "^5.0.13",
     "morgan": "~1.9.0",
     "nodemon": "^1.17.3",

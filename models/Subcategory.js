@@ -20,7 +20,7 @@ const subcatSchema = mongoose.Schema({
 	}
 });
 
-const subcategory = module.exports = mongoose.model('Category', catSchema);
+const subcategory = module.exports = mongoose.model('Subcategory', subcatSchema);
 //
 // // Get Books
 // module.exports.getBooks = (callback, limit) => {

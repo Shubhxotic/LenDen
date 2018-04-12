@@ -11,7 +11,7 @@ const catSchema = mongoose.Schema({
 		required: true
 	},
 	SubCategories:{
-		type: String
+		type: String,
 		required: true
 	},
 	CategoryImage:{

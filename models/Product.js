@@ -27,8 +27,8 @@ const productSchema = mongoose.Schema({
     required: true
 	},
 	Description:{
-		type: String
-    required: true
+		type: String,
+		required: true
 	},
 	User_Id:{
 		type: Number,

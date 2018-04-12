@@ -5,7 +5,8 @@ var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", [
 var Category= require("../models/Category");
 
 router.get('/xyz', function(req, res, next){
-  db.Category.find(function(err, Category){
+    res.send("idasod");
+    db.Category.find(function(err, Category){
       if(err){
           res.send(err);
       }

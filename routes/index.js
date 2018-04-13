@@ -27,10 +27,6 @@ router.route("/subcat").get(function (req, res) {
   res.render("subcat_filters");
 })
 
-router.get('/home', function(req,res,next){
- res.render("index");
-});
-
 
 router.get('/Category', function(req, res, next){
   db.Category.find(function(err, Category){

@@ -5,15 +5,6 @@ var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", [
 
 var Category= require("../models/Category");
 
-router.get('/xyz', function(req, res, next){ //why next? Infact why this func?
-    res.send("idasod");
-    db.Category.find(function(err, Category){       //.Category kyu??
-      if(err){
-          res.send(err);
-      }
-      res.json(Category);
-  });
-});
 
 // Get Single Category
 router.get('/Category/:id', function(req, res, next){

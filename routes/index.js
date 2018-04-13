@@ -27,48 +27,6 @@ router.route("/subcat").get(function (req, res) {
   res.render("subcat_filters");
 })
 
-router.get('/home', function(req,res,next){
- res.render("index");
-});
-
-
-router.get('/Category', function(req, res, next){
-  db.Category.find(function(err, Category){
-      if(err){
-          res.send(err);
-      }
-      res.json(Category);
-  });
-});
-
-// Get Single Category
-router.get('/Category/:id', function(req, res, next){
-  db.Category.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, Category){
-      if(err){
-          res.send(err);
-      }
-      res.json(Category);
-  });
-});
-
-router.get('/addCategory', function(req, res, next){
-  res.render("addCategory");
-});
-
-router.post('/addCategory', function(req, res, next){
-  var task = req.body;
-      db.Category.save(task, function(err, task){
-          if(err){
-              res.send(err);
-          }
-          res.json(task);
-      });
-});
-
-module.exports = router;
-
-
-
 router.get('/subcategory', function(req, res, next){
   db.Subcategory.find(function(err, Subcategory){
       if(err){
@@ -77,16 +35,6 @@ router.get('/subcategory', function(req, res, next){
       res.json(Subcategory);
   });
 });
-
-// Get Single Category
-// router.get('/Category/:id', function(req, res, next){
-//   db.Category.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, Category){
-//       if(err){
-//           res.send(err);
-//       }
-//       res.json(Category);
-//   });
-// });
 
 router.get('/addSubcategory', function(req, res, next){
   res.render("addSubcategory");
@@ -102,9 +50,6 @@ router.post('/addSubcategory', function(req, res, next){
       });
 });
 
-
-
-
 router.get('/Products', function(req, res, next){
   db.Product.find(function(err, Product){
       if(err){
@@ -114,16 +59,6 @@ router.get('/Products', function(req, res, next){
   });
 });
 
-// Get Single Category
-// router.get('/Category/:id', function(req, res, next){
-//   db.Category.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, Category){
-//       if(err){
-//           res.send(err);
-//       }
-//       res.json(Category);
-//   });
-// });
-
 router.get('/addProduct', function(req, res, next){
   res.render("addProduct");
 });
@@ -131,39 +66,6 @@ router.get('/addProduct', function(req, res, next){
 router.post('/addProduct', function(req, res, next){
   var task = req.body;
       db.Product.save(task, function(err, task){
-          if(err){
-              res.send(err);
-          }
-          res.json(task);
-      });
-});
-
-router.get('/Users', function(req, res, next){
-  db.User.find(function(err, User){
-      if(err){
-          res.send(err);
-      }
-      res.json(User);
-  });
-});
-
-// Get Single User
-// router.get('/User/:id', function(req, res, next){
-//   db.User.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, User){
-//       if(err){
-//           res.send(err);
-//       }
-//       res.json(User);
-//   });
-// });
-
-router.get('/addUser', function(req, res, next){
-  res.render("addUser");
-});
-
-router.post('/addUser', function(req, res, next){
-  var task = req.body;
-      db.User.save(task, function(err, task){
           if(err){
               res.send(err);
           }

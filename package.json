@@ -13,10 +13,8 @@
     "ejs": "^2.5.8",
     "express": "~4.15.5",
     "express-handlebars": "^3.0.0",
-<<<<<<< HEAD
-=======
+    "finalhandler": "^1.1.1",
     "mongojs": "^2.5.0",
->>>>>>> 15b05871365e88447edf92b33fa45c2a7c20580d
     "mongoose": "^5.0.13",
     "morgan": "~1.9.0",
     "nodemon": "^1.17.3",

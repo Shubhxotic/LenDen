@@ -16,6 +16,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var index = require('./routes/index');
 var users = require('./routes/users');
 var category=require('./routes/categories');
+var Subcategory = require('./routes/subcategories');
+var Product = require('./routes/products');
+var Parameters = require('./routes/parameters');
 
 var app = express();
 
@@ -49,6 +52,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/category',category);
+app.use('/Subcategory',Subcategory);
+app.use('/Product',Product);
+app.use('/Parameters',Parameters);
 
 
 // catch 404 and forward to error handler

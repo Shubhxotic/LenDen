@@ -6,6 +6,10 @@ const userSchema = mongoose.Schema({
 		type: Number,
 		required: true
 	},
+	AdminToken:{
+		type: Boolean,
+		required: true
+	},
 	Name:{
 		type: String,
 		required: true
@@ -18,7 +22,7 @@ const userSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	Points:{
+	LenDenPoints:{
 		type: String,
 		required: true
 	},

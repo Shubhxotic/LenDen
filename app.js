@@ -58,6 +58,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -70,8 +71,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(3000,function(){
-  console.log("Listening on port 3000 :)");
-})
-
 module.exports = app;
+
+app.listen(3000,function(){
+  console.log(' Server started on port 3000.....');
+});

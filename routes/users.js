@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var mongojs = require('mongojs');
+var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['User']);
 
-
-
+var User= require("../models/User");
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-
-router.get('/Users', function(req, res, next){
+router.get('/all', function(req, res, next){
   db.User.find(function(err, User){
       if(err){
           res.send(err);
@@ -19,7 +19,7 @@ router.get('/Users', function(req, res, next){
 });
 
 // Get Single User
-router.get('/User/:id', function(req, res, next){
+router.get('/user/:id', function(req, res, next){
   db.User.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, User){
       if(err){
           res.send(err);
@@ -28,11 +28,15 @@ router.get('/User/:id', function(req, res, next){
   });
 });
 
-router.get('/addUser', function(req, res, next){
-  res.render("addUser");
+router.get('/signin', function(req, res, next){
+  res.render("authentication");
 });
 
-router.post('/addUser', function(req, res, next){
+router.get('/signup', function(req, res, next){
+  res.render("authentication");
+});
+
+router.post('/signup', function(req, res, next){
   var task = req.body;
       db.User.save(task, function(err, task){
           if(err){
@@ -42,6 +46,14 @@ router.post('/addUser', function(req, res, next){
       });
 });
 
-
+/*router.post('/signin', function(req, res, next){
+  var task = req.body;
+      db.User.save(task, function(err, task){
+          if(err){
+              res.send(err);
+          }
+          res.json(task);
+      });
+});*/
 
 module.exports = router;

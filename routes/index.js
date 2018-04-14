@@ -7,6 +7,9 @@ var ProductsDen= require("../models/ProductsDen");
 var Quality= require("../models/quality");
 var Parameter= require("../models/parameter");*/
 
+router.route("/login").get(function (req, res) {
+  res.render("authentication");
+})
 
 router.route("/").get(function (req, res) {
   res.render("homepage");

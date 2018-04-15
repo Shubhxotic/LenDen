@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -28,17 +26,21 @@ router.get('/User/:id', function(req, res, next){
   });
 });
 
+
 router.get('/addUser', function(req, res, next){
   res.render("addUser");
 });
 
 router.post('/addUser', function(req, res, next){
-  var task = req.body;
+    var task = req.body;
+    alert(task);
       db.User.save(task, function(err, task){
           if(err){
-              res.send(err);
+            alert("Error");    
+              res.json({success: false, msg: "Failed to register User"});
           }
-          res.json(task);
+          alert(JSON.stringify(task,null,2));
+          res.json({success: true, user: task});
       });
 });
 

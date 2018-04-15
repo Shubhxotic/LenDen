@@ -7,7 +7,7 @@ var Category= require("../models/Subcategory");
 
 // console.log("In subcategories")
 router.get('/all', function(req, res, next){
-    db.Category.find(function(err, Subcategory){
+    db.Subcategory.find(function(err, Subcategory){
       if(err){
           res.send(err);
       }
@@ -17,7 +17,7 @@ router.get('/all', function(req, res, next){
 
 // Get Single Category
 router.get('/Subcat/:id', function(req, res, next){
-  db.Category.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, Subcategory){
+  db.Subcategory.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, Subcategory){
       if(err){
           res.send(err);
       }
@@ -31,7 +31,7 @@ router.get('/add', function(req, res, next){
 
 router.post('/add', function(req, res, next){
   var task = req.body;
-      db.Category.save(task, function(err, task){
+      db.Subcategory.save(task, function(err, task){
           if(err){
               res.send(err);
           }

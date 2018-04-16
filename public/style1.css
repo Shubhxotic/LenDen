@@ -288,4 +288,21 @@
 .payments {
 	font-size: 1.5em;	
 }
+
+.b0b{ border: 1px solid black; }
+.bs{ box-shadow: 2px 2px 2px 2px #555 ; }
+.top-buffer { margin-top:40px; }
+.mybg{ background-color: #EBC2ED; }
+.mytext{ text-align:"center"; font-family: "Times New Roman", Times, serif; }
+.imgbg{ margin-top: 20px; background-color: white; margin-left: auto; margin-right: auto; width: 90%;}
+.imgbg img{ margin-left: auto; margin-right: auto; width: 70%;}
+.tc{ text-align: center}
+
+.vcenter
+{
+	position:  absolute;
+	margin:  auto;
+	top:  0;
+	bottom:  0;
+	height:  height;
 }

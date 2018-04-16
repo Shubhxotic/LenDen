@@ -26,7 +26,7 @@ router.get('/Cat/:id', function(req, res, next){
 });
 
 router.get('/add', function(req, res, next){
-  res.render("addCategory");
+  res.render("addCategory", {layout: "main"});
 });
 
 router.post('/add', function(req, res, next){

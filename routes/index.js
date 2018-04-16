@@ -15,8 +15,13 @@ router.route("/").get(function (req, res) {
   res.render("homepage");
 })
 
+
+router.get("/temp",function(req,res,next){
+  res.render('temp');
+})
+
 router.route("/prodDesc").get(function (req, res) {
-  res.render("lenden_pd");
+  res.render("lenden_pd" , {css:['style.css']});
 })
 
 router.route("/shoppingcart").get(function (req, res) {
@@ -24,7 +29,7 @@ router.route("/shoppingcart").get(function (req, res) {
 })
 
 router.route("/subcat").get(function (req, res) {
-  res.render("subcat_filters");
+  res.render("subcat_filters",{css: ["subcat_filters.css"]});
 })
 
 module.exports = router;

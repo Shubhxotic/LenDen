@@ -3,10 +3,7 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['User']);
 
-<<<<<<< HEAD
-=======
-var User= require("../models/User");
->>>>>>> 2d307be720854247260f7c8ff3e2950e2c61e7f0
+var User= require("../models/user");
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');

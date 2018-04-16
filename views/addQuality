@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Add a Quality:- </h2>
+    <form action="/Quality/add" method="post">
+        <label for="Quality_Id">Quality Id:- </label>
+        <input type="text" name="Quality_Id" id="Quality_Id"><br>
+        <label for="Subcat_Id">Subcategory Id:- </label>
+        <input type="text" name="Subcat_Id" id="Subcat_Id"><br>
+        <label for="Parameter">Parameters (separated by comma):- </label>
+        <input type="text" name="Parameters" id="Parameters"><br>
+        <label for="ApplicableSubcat">Applicable Subcategories:- </label>
+        <input type="text" name="ApplicableSubcat" id="ApplicableSubcat"><br>
+        <input type="submit" name="submit">
+    </form>
+</body>
+</html>

@@ -11,7 +11,7 @@ router.get('/all', function(req, res, next){
       if(err){
           res.send(err);
       }
-    //   res.json(Category);
+      res.json(Category);
     res.render("homepage",{Categories: Category});
   });
 });

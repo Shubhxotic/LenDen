@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mongojs = require('mongojs');
+var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['Category']);
 /*var Category= require("../models/Category");
 var Subcategory= require("../models/Subcategory");
 var Product= require("../models/Product");
@@ -11,10 +13,17 @@ router.route("/login").get(function (req, res) {
   res.render("authentication");
 })
 
-router.route("/").get(function (req, res) {
-  res.render("homepage");
-})
 
+
+router.get("/",function (req, res,next) {
+  db.Category.find(function(err, Category){
+    if(err){
+        res.send(err);
+    }
+  //   res.json(Category);
+  res.render("homepage",{Categories: Category});
+    })
+})
 
 router.get("/temp",function(req,res,next){
   res.render('temp');

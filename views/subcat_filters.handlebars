@@ -27,6 +27,7 @@
         <li class="nav-item">
       <a class="nav-link" href="#">Vehicles</a>
     </li>
+    
         <li class="nav-item">
       <a class="nav-link" href="#">Backpacks</a>
     </li>
@@ -37,21 +38,23 @@
 	
 <br>
 	<div class="row">
-	<div class="prod-display col-10">
+	{{#each Products}}
+  <div class="prod-display col-10">
       <div class="gallery col-xs-12">   
        <a target="_blank" href="hair-dryer.jpeg">
     <img src="hair-dryer.jpeg" alt="Pink Hair Dryer" width="300" height="200" class="img-fluid">
   </a>
   <div class="desc">
-  	<b>Pink Hair Dryer</b> 
+  	<b>{{this.ProductName}}</b> 
   	<br/> 
-  	Price: Rs. 200
+  	Price: Rs. {{this.Price}}
   	<br/>
   	<a href="/prodDesc"><button type="button" class="btn btn-success btn-sm btn-block"><i class="fa fa-shopping-cart"></i>Add To Cart</button></a>
     <button type="button" class="btn btn-light btn-sm btn-block"><i class="fa fa-heart"></i>Add To Wishlist</button>
   </div>
-</div>
+  </div>
 	</div>
+  {{/each}}
 	<div class="cat-filters col-lg-2 col-xs-12">
 		<p><strong><center>Subcategories and Filters</center></strong></p>
 	 <div id="accordion">

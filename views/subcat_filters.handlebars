@@ -1,5 +1,11 @@
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
   <ul class="navbar-nav">
+  {{#each Subcategories}}
+    <li class="nav-item">
+      <a class="nav-link" href="/subcategory/subcategory/{{this.Subcat_id}}">{{this.SubcategoryName}}</a>
+    </li>
+  {{/each}}
+{{!--   
     <li class="nav-item">
       <a class="nav-link" href="#">Accessories</a>
     </li>
@@ -30,7 +36,7 @@
     
         <li class="nav-item">
       <a class="nav-link" href="#">Backpacks</a>
-    </li>
+    </li> --}}
   </ul>
 </nav>
 
@@ -38,25 +44,27 @@
 	
 <br>
 	<div class="row">
+    <div class="col-10 row">
 	{{#each Products}}
-  <div class="prod-display col-10">
+  <div class="prod-display col-4">
       <div class="gallery col-xs-12">   
-       <a target="_blank" href="hair-dryer.jpeg">
-    <img src="hair-dryer.jpeg" alt="Pink Hair Dryer" width="300" height="200" class="img-fluid">
+       <a target="_blank" href="{{this.ProductImage}}">
+    <img src="{{this.ProductImage}}" alt="Pink Hair Dryer"  class="img-fluid" width="300" height="200">
   </a>
   <div class="desc">
   	<b>{{this.ProductName}}</b> 
   	<br/> 
   	Price: Rs. {{this.Price}}
   	<br/>
-  	<a href="/prodDesc"><button type="button" class="btn btn-success btn-sm btn-block"><i class="fa fa-shopping-cart"></i>Add To Cart</button></a>
-    <button type="button" class="btn btn-light btn-sm btn-block"><i class="fa fa-heart"></i>Add To Wishlist</button>
+  	<a href="/prodDesc/{{this.Product_id}}"><button type="button" class="btn btn-success btn-sm"><i class="fa fa-shopping-cart"></i>Add To Cart</button></a>
+    <button type="button" class="btn btn-light btn-sm "><i class="fa fa-heart"></i>Add To Wishlist</button>
   </div>
   </div>
 	</div>
   {{/each}}
-	<div class="cat-filters col-lg-2 col-xs-12">
-		<p><strong><center>Subcategories and Filters</center></strong></p>
+	</div>
+  <div class="cat-filters col-lg-2 col-xs-12">
+		{{!-- <p><strong><center>Subcategories and Filters</center></strong></p> --}}
 	 <div id="accordion">
     <div class="card">
       <div class="card-header">
@@ -103,3 +111,4 @@
 	</div>
 </div>
 <br>
+

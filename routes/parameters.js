@@ -3,7 +3,7 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['Parameter']);
 
-var Parameter = require("../models/Parameter");
+var Parameter = require("../models/parameter");
 
 // console.log("In categories")
 router.get('/all', function(req, res, next){

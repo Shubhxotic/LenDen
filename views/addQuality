@@ -7,12 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Add a Parameter:- </h2>
-    <form action="/Parameters/add" method="post">
-        <label for="Parameter_Id">Parameter Id:- </label>
-        <input type="text" name="Parameter_Id" id="Parameter_Id"><br>
-        <label for="ParaName">Parameter name:- </label>
-        <input type="text" name="ParaName" id="ParaName"><br>
+    <h2>Add a Quality:- </h2>
+    <form action="/Quality/add" method="post">
+        <label for="Quality_Id">Quality Id:- </label>
+        <input type="text" name="Quality_Id" id="Quality_Id"><br>
+        <label for="Subcat_Id">Subcategory Id:- </label>
+        <input type="text" name="Subcat_Id" id="Subcat_Id"><br>
+        <label for="Parameter">Parameters (separated by comma):- </label>
+        <input type="text" name="Parameters" id="Parameters"><br>
         <label for="ApplicableSubcat">Applicable Subcategories:- </label>
         <input type="text" name="ApplicableSubcat" id="ApplicableSubcat"><br>
         <input type="submit" name="submit">

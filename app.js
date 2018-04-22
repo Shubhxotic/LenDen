@@ -12,6 +12,7 @@ var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+<<<<<<< HEAD
 //app.use('/sayHello', router);
 
 
@@ -24,10 +25,15 @@ var Subcategory = require('./routes/subcategories');
 var Product = require('./routes/products');
 var Parameters = require('./routes/parameters');
 
+=======
+>>>>>>> 9a9e7b9b5e6044e116ecda0a2477b91571b38853
 var app = express();
 
 app.engine('handlebars', exphbs({
-	defaultLayout: 'main',
+  extname: 'handlebars',
+  defaultLayout: __dirname+'/views/layouts/main',
+  layoutsDir: path.join(__dirname,'views/layouts/'),
+  partialsDir: [path.join(__dirname,'views/partials/')],
 	helpers: {
 	    toJSON : function(object) {
 	      return JSON.stringify(object, null, 4);
@@ -40,7 +46,6 @@ app.engine('handlebars', exphbs({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
-
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
@@ -50,13 +55,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
+app.use("/static",express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
+// Including Routes files
+var index = require('./routes/index');
+var users = require('./routes/users');
+var category=require('./routes/categories');
+var Subcategory = require('./routes/subcategories');
+var Product = require('./routes/products');
+var Parameters = require('./routes/parameters');
+
 // Assigning routes files
 app.use('/', index);
-app.use('/users', users);
-app.use('/category',category);
+app.use('/Users', users);
+app.use('/Category',category);
 app.use('/Subcategory',Subcategory);
 app.use('/Product',Product);
 app.use('/Parameters',Parameters);

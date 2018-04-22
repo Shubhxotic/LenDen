@@ -20,12 +20,18 @@ router.route("/signin").get(function (req, res) {
   res.render("homepage");
 })
 
+<<<<<<< HEAD
 router.route("/").get(function (req, res) {
   res.render("authentication");
+=======
+
+router.get("/temp",function(req,res,next){
+  res.render('temp');
+>>>>>>> 9a9e7b9b5e6044e116ecda0a2477b91571b38853
 })
 
 router.route("/prodDesc").get(function (req, res) {
-  res.render("lenden_pd");
+  res.render("lenden_pd" , {css:['style.css']});
 })
 
 router.route("/shoppingcart").get(function (req, res) {
@@ -33,7 +39,7 @@ router.route("/shoppingcart").get(function (req, res) {
 })
 
 router.route("/subcat").get(function (req, res) {
-  res.render("subcat_filters");
+  res.render("subcat_filters",{css: ["subcat_filters.css"]});
 })
 
 module.exports = router;

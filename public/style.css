@@ -167,3 +167,45 @@
 }
 
 .bradius-5{ border-radius: 5%; }
+
+.b0b{
+	border: 1px solid black;
+	}
+	.h-3{
+	margin-top: 5px;
+	height: 3px;
+	}
+	h4{
+	color: #009999
+	}
+	*{
+  		margin: 0;
+  		/*padding: 5px auto;*/
+  		/*border: 1px solid black;*/
+  	}
+  	html {
+    animation: fadeSiteIn 1.9s ease forwards; /* [1] */
+    }
+	/*
+	button{
+		-webkit-animation: fadeSiteIn 0.5s ease forwards;
+		-o-animation: fadeSiteIn 0.5s ease forwards;
+		animation: fadeSiteIn 0.5s ease forwards;
+	}
+	*/
+	html.fadeSiteOut {
+	  animation:  fadeSiteOut 1.9s ease forwards; /* [2] */
+	}
+
+
+	@keyframes fadeSiteIn { /* [1] */
+		from   { opacity: 0; }
+		to    { opacity: 1; }
+	}
+
+	@keyframes fadeSiteOut { /* [2] */
+		from   { opacity: 1; }
+		to     { opacity: 0; }
+	}
+
+	

@@ -16,7 +16,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 // Including Routes files
-var email = require('./routes/email');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var category=require('./routes/categories');
@@ -64,8 +63,6 @@ app.use('/Category',category);
 app.use('/Subcategory',Subcategory);
 app.use('/Product',Product);
 app.use('/Parameters',Parameters);
-app.use('/email',email);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

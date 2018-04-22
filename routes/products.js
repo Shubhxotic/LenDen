@@ -19,7 +19,7 @@ router.get('/Product/:id', function(req, res, next){
       if(err){
           res.send(err);
       }
-      res.json(Product);    //??
+      res.json(Product);    
   });
 });
 

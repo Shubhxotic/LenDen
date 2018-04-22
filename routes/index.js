@@ -7,12 +7,21 @@ var ProductsDen= require("../models/ProductsDen");
 var Quality= require("../models/quality");
 var Parameter= require("../models/parameter");*/
 
-router.route("/login").get(function (req, res) {
-  res.render("authentication");
+
+router.route("/email").get(function (req, res) {
+  res.render("email");
+})
+
+router.route("/signup").get(function (req, res) {
+  res.render("homepage");
+})
+
+router.route("/signin").get(function (req, res) {
+  res.render("homepage");
 })
 
 router.route("/").get(function (req, res) {
-  res.render("homepage");
+  res.render("authentication");
 })
 
 router.route("/prodDesc").get(function (req, res) {

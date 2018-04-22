@@ -12,7 +12,11 @@ var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+//app.use('/sayHello', router);
+
+
 // Including Routes files
+var email = require('./routes/email');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var category=require('./routes/categories');
@@ -38,7 +42,8 @@ app.set('view engine', 'handlebars');
 
 
 // uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -55,7 +60,7 @@ app.use('/category',category);
 app.use('/Subcategory',Subcategory);
 app.use('/Product',Product);
 app.use('/Parameters',Parameters);
-
+app.use('/email',email);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

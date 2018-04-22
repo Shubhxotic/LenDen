@@ -29,6 +29,12 @@ router.get("/temp",function(req,res,next){
   res.render('temp');
 })
 
+router.get("/profile",function(req,res,next){
+  res.render('account', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+                        css: ['account.css']
+  });
+})
+
 router.route("/prodDesc").get(function (req, res) {
   res.render("lenden_pd" , {css:['style.css']});
 })

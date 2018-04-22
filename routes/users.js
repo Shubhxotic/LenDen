@@ -3,7 +3,7 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var nodemailer = require('nodemailer');
 var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['User']);
-var User= require("../models/User");
+var User= require("../models/user");
 
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",

@@ -12,6 +12,18 @@ var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+//app.use('/sayHello', router);
+
+
+// Including Routes files
+var email = require('./routes/email');
+var index = require('./routes/index');
+var users = require('./routes/users');
+var category=require('./routes/categories');
+var Subcategory = require('./routes/subcategories');
+var Product = require('./routes/products');
+var Parameters = require('./routes/parameters');
+
 var app = express();
 
 app.engine('handlebars', exphbs({
@@ -32,7 +44,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -44,14 +57,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-// Including Routes files
-var index = require('./routes/index');
-var users = require('./routes/users');
-var category=require('./routes/categories');
-var Subcategory = require('./routes/subcategories');
-var Product = require('./routes/products');
-var Parameters = require('./routes/parameters');
-
 // Assigning routes files
 app.use('/', index);
 app.use('/Users', users);
@@ -59,7 +64,7 @@ app.use('/Category',category);
 app.use('/Subcategory',Subcategory);
 app.use('/Product',Product);
 app.use('/Parameters',Parameters);
-
+app.use('/email',email);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,2 +1,51 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+    <head>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.messagestore.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.fallbacks.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.language.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.parser.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.emitter.js"></script>
+<script src="js/lib/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
+        <title>Book your room</title>
+        <style>
+            body {font-family: sans-serif; line-height: 23px;}
+            code {color: #222; background: #f9f9f9;}
+        </style>
+        <script>
+        function getvalues(){
+            $.get("./room/:id")
+                .done(function(data) {
+                    // if(data.length = 0) {
+                    //   data.forEach(function(element, index) {
+                    //     data[index] = AntiXSS.sanitizeInput(element)
+                    //   });
+                      $('#response').html($.i18n('No of persons') + JSON.stringify(data));
+                    }
+                });
+            }
+            getvalues();
+</script>
+    </head>
+    <body style="color: #333">
+        <div style="max-width: 800px; margin: 0 auto;">
+              <label> Room E206: </label>
+              <label> No of persons =
+                <p id="response" class="lead text-center"></p>
+             </label>
+
+        </div>
+    </body>
+</html>
+=======
 
 <p class="btn btn-primary">asdad</p>
+>>>>>>> 9a9e7b9b5e6044e116ecda0a2477b91571b38853

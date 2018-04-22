@@ -35,6 +35,12 @@ router.get("/profile",function(req,res,next){
   });
 })
 
+router.get("/contact",function(req,res,next){
+  res.render('contactus', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+                        css: ['account.css']
+  });
+})
+
 router.route("/prodDesc").get(function (req, res) {
   res.render("lenden_pd" , {css:['style.css']});
 })

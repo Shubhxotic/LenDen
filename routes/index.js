@@ -8,10 +8,6 @@ var Quality= require("../models/quality");
 var Parameter= require("../models/parameter");*/
 
 
-router.route("/email").get(function (req, res) {
-  res.render("email");
-})
-
 router.route("/signup").get(function (req, res) {
   res.render("homepage");
 })
@@ -20,14 +16,9 @@ router.route("/signin").get(function (req, res) {
   res.render("homepage");
 })
 
-<<<<<<< HEAD
+
 router.route("/").get(function (req, res) {
   res.render("authentication");
-=======
-
-router.get("/temp",function(req,res,next){
-  res.render('temp');
->>>>>>> 9a9e7b9b5e6044e116ecda0a2477b91571b38853
 })
 
 router.route("/prodDesc").get(function (req, res) {

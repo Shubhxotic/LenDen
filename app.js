@@ -12,12 +12,12 @@ var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-<<<<<<< HEAD
+
 //app.use('/sayHello', router);
 
 
 // Including Routes files
-var email = require('./routes/email');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var category=require('./routes/categories');
@@ -25,8 +25,7 @@ var Subcategory = require('./routes/subcategories');
 var Product = require('./routes/products');
 var Parameters = require('./routes/parameters');
 
-=======
->>>>>>> 9a9e7b9b5e6044e116ecda0a2477b91571b38853
+
 var app = express();
 
 app.engine('handlebars', exphbs({
@@ -75,7 +74,7 @@ app.use('/Category',category);
 app.use('/Subcategory',Subcategory);
 app.use('/Product',Product);
 app.use('/Parameters',Parameters);
-app.use('/email',email);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -99,6 +98,6 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(3000,function(){
+app.listen(3001,function(){
   console.log(' Server started on port 3000.....');
 });

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
 var nodemailer = require('nodemailer');
+var bcrypt = require('bcrypt');
 var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['User']);
 
 var User= require("../models/User");
@@ -15,8 +16,6 @@ var smtpTransport = nodemailer.createTransport({
         pass: "siddhant"
     }
 });
-
-
 
 /* GET users listing. */
 
@@ -52,32 +51,58 @@ router.get('/user/:id', function(req, res, next){
 });
 
 router.post('/signup', function(req, res, next){
+  console.log("ixjfiosdoifsodif sdiof sdif ds f\n\n\n\n\\n\n\nn\n\n\n\n\nn\n\nn");
   var task = req.body;
+  console.log(task);
+  db.User.pre('save', function (next) {
+  var user = this;
+  console.log("user"+user);
+  bcrypt.hash(user.Password, 10, function (err, hash){
+  if (err) {
+   return next(err);
+   console.log(err);
+  }
+  user.Password = hash;
+  console.log('hashed');
+  next();
+  })
       db.User.save(task, function(err, task){
           if(err){
             alert("Error");
               res.json({success: false, msg: "Failed to register User"});
           }
 
+          });
+          router.get('/user/:email', function(req, res, next){
+            db.User.findOne({user:  req.params.email}, function(err, User){
+                if(err){
+                    alert('This email is already registered!')
+                    console.log('duplicate email');
+                }
+                var user = req.body.user;
+                  var mailOptions={
+                      to : user,
+                      subject : 'email from nodeJS',
+                      text : 'Yayy! it finally worked!'
+                  }
+                  console.log(mailOptions);
+                  smtpTransport.sendMail(mailOptions, function(error, response){
+                   if(error){
+                          console.log(error);
+                      res.end("error");
+                   }else{
+                          console.log("Message sent");
+                      //res.end("sent");
+                    }
+              });
+            });
+          });
+
+
           // alert(JSON.stringify(task,null,2));
           // res.json({success: true, user: task});
       });
-      var user = req.body.user;
-        var mailOptions={
-            to : user,
-            subject : 'email from nodeJS',
-            text : 'Yayy! it finally worked!'
-        }
-        console.log(mailOptions);
-        smtpTransport.sendMail(mailOptions, function(error, response){
-         if(error){
-                console.log(error);
-            res.end("error");
-         }else{
-                console.log("Message sent");
-            //res.end("sent");
-          }
-    });
+
 });
 
 router.post('/signin', function(req, res, next){
@@ -88,6 +113,7 @@ router.post('/signin', function(req, res, next){
       }
       res.json(User);
   });
+
 });
 
 module.exports = router;

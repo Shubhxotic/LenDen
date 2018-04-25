@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 // User Schema
 const userSchema = mongoose.Schema({
@@ -39,6 +40,10 @@ const userSchema = mongoose.Schema({
 		required: true
 	},
 	ProductWishlist:{
+		type: String,
+		required: true
+	},
+	Password:{
 		type: String,
 		required: true
 	}

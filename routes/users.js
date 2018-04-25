@@ -47,8 +47,11 @@ router.get('/user/:id', function(req, res, next){
   });
 });
 
+
+
 router.post('/signup', function(req, res, next){
   var task = req.body;
+  console.log("ddaoidsai");
       db.User.save(task, function(err, task){
           if(err){
             alert("Error");    

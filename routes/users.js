@@ -1,11 +1,11 @@
 var express = require('express');
+var session = require('express-session');
 var router = express.Router();
 var mongojs = require('mongojs');
 var nodemailer = require('nodemailer');
 var bcrypt = require('bcrypt');
 var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['User']);
-
-var User= require("../models/User");
+var User= require("../models/user");
 
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
@@ -17,7 +17,6 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
-/* GET users listing. */
 
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -34,11 +33,11 @@ router.get('/all', function(req, res, next){
 
 router.route("/signin").get(function (req, res) {
   res.render("homepage");
-})
+});
 
-router.route("/signup").get(function (req, res) {
+/*router.route("/signup").get(function (req, res) {
   res.render("homepage");
-})
+})*/
 
 // Get Single User
 router.get('/user/:id', function(req, res, next){
@@ -50,60 +49,65 @@ router.get('/user/:id', function(req, res, next){
   });
 });
 
+router.get('/user/:email', function(req, res, next){
+  db.User.findOne({email: req.params.user}, function(err, User){
+    console.log("req.params.user "+req.params.user);
+    console.log("email "+email);
+      if(!err){
+          res.send(err);
+          alert('This email is already registered!');
+      }
+    });
+    });
+
+
+
+var sess;
+
 router.post('/signup', function(req, res, next){
-  console.log("ixjfiosdoifsodif sdiof sdif ds f\n\n\n\n\\n\n\nn\n\n\n\n\nn\n\nn");
   var task = req.body;
   console.log(task);
-  db.User.pre('save', function (next) {
-  var user = this;
-  console.log("user"+user);
-  bcrypt.hash(user.Password, 10, function (err, hash){
-  if (err) {
-   return next(err);
-   console.log(err);
+  sess = req.session;
+  sess.user = req.body.username;
+  console.log(req.body.username);
+  console.log(sess.user);
+  if(sess.user) {
+  res.write('<h1>Hello '+sess.username+'</h1>');
+  res.end('<a href="+">Logout</a>');
+  } else {
+      res.write(' <h1>Please login first.</h1>');
+      res.end('<a href="+">Login</a>');
   }
-  user.Password = hash;
-  console.log('hashed');
-  next();
-  })
-      db.User.save(task, function(err, task){
+});
+  /*db.User.save(task, function(err, task){
           if(err){
-            alert("Error");
+             alert("Error");
               res.json({success: false, msg: "Failed to register User"});
-          }
+          }*/
+          //db.User.save({AdminToken : 0, RewardPts : 200, task}); //saving in two different documents //why???
 
-          });
-          router.get('/user/:email', function(req, res, next){
-            db.User.findOne({user:  req.params.email}, function(err, User){
-                if(err){
-                    alert('This email is already registered!')
-                    console.log('duplicate email');
-                }
-                var user = req.body.user;
-                  var mailOptions={
-                      to : user,
-                      subject : 'email from nodeJS',
-                      text : 'Yayy! it finally worked!'
-                  }
-                  console.log(mailOptions);
-                  smtpTransport.sendMail(mailOptions, function(error, response){
-                   if(error){
-                          console.log(error);
-                      res.end("error");
-                   }else{
-                          console.log("Message sent");
-                      //res.end("sent");
+
+                  /*var user = req.body.user;
+                    var mailOptions={
+                        to : user,
+                        subject : 'email from nodeJS',
+                        text : 'Yayy! it finally worked!'
                     }
-              });
-            });
-          });
-
-
-          // alert(JSON.stringify(task,null,2));
-          // res.json({success: true, user: task});
-      });
+                    console.log(mailOptions);
+                    smtpTransport.sendMail(mailOptions, function(error, response){
+                     if(error){
+                            console.log(error);
+                        res.end("error");
+                     }else{
+                            console.log("Message sent");
+                           //res.render("homepage");
+                      }
+              });*/
+/*            });
+            };
 
 });
+});*/
 
 router.post('/signin', function(req, res, next){
   var user = req.body.email;
@@ -113,7 +117,6 @@ router.post('/signin', function(req, res, next){
       }
       res.json(User);
   });
-
 });
 
 module.exports = router;

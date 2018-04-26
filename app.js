@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
+var session = require('express-session');
 
 var mongoose= require('mongoose');
 mongoose.connect("mongodb://lendenuser:lenden@123@ds237389.mlab.com:37389/lenden");
@@ -15,7 +16,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //app.use('/sayHello', router);
 
 // Including Routes files
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var category=require('./routes/categories');
@@ -38,6 +38,7 @@ app.engine('handlebars', exphbs({
 	})
 );
 
+app.use(session({secret: 'ssshhhhh'}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
@@ -54,14 +55,6 @@ app.use("/static",express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 // Session-persisted message middleware
 
-// Including Routes files
-var index = require('./routes/index');
-var users = require('./routes/users');
-var category=require('./routes/categories');
-var Subcategory = require('./routes/subcategories');
-var Product = require('./routes/products');
-var Parameters = require('./routes/parameters');
-
 // Assigning routes files
 app.use('/', index);
 app.use('/Users', users);
@@ -69,8 +62,6 @@ app.use('/Category',category);
 app.use('/Subcategory',Subcategory);
 app.use('/Product',Product);
 app.use('/Parameters',Parameters);
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

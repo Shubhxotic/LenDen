@@ -306,3 +306,7 @@
 	bottom:  0;
 	height:  height;
 }
+
+.accDiv:hover{
+	background-color: #AAA;
+}

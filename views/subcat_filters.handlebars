@@ -1,5 +1,9 @@
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  <ul class="navbar-nav">
+<nav class="navbar navbar-expand-sm bg-light navbar-light pb-0 p-auto">
+  <ul class="navbar-nav text-center row px-auto p-auto mx-auto ">
+  {{#each Categories}}
+      <a class="nav-item col-1 m-0 p-0 nav-link font-15" href="/subcategory/Category/{{this.Cat_id}}">{{this.CategoryName}}</a>
+  {{/each}}
+{{!--   
     <li class="nav-item">
       <a class="nav-link" href="#">Accessories</a>
     </li>
@@ -27,9 +31,10 @@
         <li class="nav-item">
       <a class="nav-link" href="#">Vehicles</a>
     </li>
+    
         <li class="nav-item">
       <a class="nav-link" href="#">Backpacks</a>
-    </li>
+    </li> --}}
   </ul>
 </nav>
 
@@ -37,58 +42,57 @@
 	
 <br>
 	<div class="row">
-	<div class="prod-display col-10">
+    <div class="col-10 row">
+	{{#each Products}}
+  <div class="prod-display col-3 h-75" >
       <div class="gallery col-xs-12">   
-       <a target="_blank" href="hair-dryer.jpeg">
-    <img src="hair-dryer.jpeg" alt="Pink Hair Dryer" width="300" height="200" class="img-fluid">
+       <a target="_blank" href="{{this.ProductImage}}">
+    <img src="{{this.ProductImage}}" alt="Pink Hair Dryer" class="w-100" style="height: 300px;">
   </a>
   <div class="desc">
-  	<b>Pink Hair Dryer</b> 
+  	<b>{{this.ProductName}}</b> 
   	<br/> 
-  	Price: Rs. 200
+  	Price: Rs. {{this.Price}}/Day
   	<br/>
-  	<a href="/prodDesc"><button type="button" class="btn btn-success btn-sm btn-block"><i class="fa fa-shopping-cart"></i>Add To Cart</button></a>
-    <button type="button" class="btn btn-light btn-sm btn-block"><i class="fa fa-heart"></i>Add To Wishlist</button>
+  	<a href="/prodDesc/{{this.Product_id}}"><button type="button" class="btn btn-success "><i class="fa fa-shopping-cart"></i>Add To Cart</button></a>
+    <button type="button" class="btn btn-light  "><i class="fa fa-heart"></i>Add To Wishlist</button>
   </div>
-</div>
+  </div>
 	</div>
-	<div class="cat-filters col-lg-2 col-xs-12">
-		<p><strong><center>Subcategories and Filters</center></strong></p>
+  {{/each}}
+	</div>
+  <div class="cat-filters col-lg-2 col-xs-12">
+		{{!-- <p><strong><center>Subcategories and Filters</center></strong></p> --}}
 	 <div id="accordion">
     <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+      <a class="card-header accDiv" class=" text-black" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
           Subcategories
-        </a>
-      </div>
+      </a>
       <div id="collapseOne" class="collapse">
-        <div class="card-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <div class="list-group w-100 m-0">
+          {{#each Subcategories}}
+          <div class="list-group-item w-100">
+            <a href="/subcategory/subcategory/{{this.Subcat_id}}" class="text-success">{{this.SubcategoryName}}</a><br>
+            </div>
+          {{/each}}
         </div>
       </div>
     </div>
     <div class="card">
-      <div class="card-header">
-        <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <a class="collapsed card-link card-header accDiv" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
         Filters
       </a>
-      </div>
       <div id="collapseTwo" class="collapse">
-        <div class="card-body">
+        <div class="card-body p-0 w-100">
            <form>
-    <div class="form-check">
+    <div class="form-check list-group m-0 p-0 w-100">
       <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" value="">Price: Low to high
+        <p class="list-group-item m-0 text-success"> Price: Low to high</p>
       </label>
     </div>
-    <div class="form-check">
+    <div class="form-check list-group m-0 p-0 w-100">
       <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" value="">Highest Ratings First
-      </label>
-    </div>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" value="">Fastest Delivery Time
+        <p class="list-group-item m-0 text-success"> Highest Ratings First</p>
       </label>
     </div>
   </form>
@@ -100,3 +104,4 @@
 	</div>
 </div>
 <br>
+

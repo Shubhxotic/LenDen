@@ -1,16 +1,32 @@
-	<div class="container top-buffer bg-dark">
+	<div class="container ">
 		<div class = "row">
 			<!--<h3 class="text-info"><marquee>GET BEST DEALS AND OFFERS AT LENDEN. REFER TO YOUR FRIENDS AND EARN POINTS!</marquee></h3>-->
 		</div>
 		<div class = "row">
-			<div class="col-4 b0b mybg tc">
+			{{#each Categories}}
+			{{!-- <div class="col-4 b0b mybg tc">
 				<div class = "imgbg" >
-					<a href="/subcat"><img src = "appliances.png " alt="Loading.."  class="img-responsive myimg"></img></a>
+					<a href="/subcategory/Category/{{this.Cat_id}}"><img src = "{{this.CategoryImage}}" alt="Loading.."  class="img-responsive myimg"></img></a>
 				</div>
 				<div class="caption mytext">
-           			<button type="button" class="btn btn-link txt"><font color="#000000">Home Appliances</font></button>
+           			<button type="button" class="btn btn-link txt"><font color="#000000">{{this.CategoryName}}</font></button>
+				</div>
+			</div> --}}
+			<div class="col-lg-4 col-sm-12 my-2">
+				<!-- Card Flip -->
+				<div class="card-flip">
+					<div class="card text-info border-primary" data-aos="fade-up">
+						<div class="card-body text-center m-auto">
+							<img src="{{this.CategoryImage}}" alt="{{this.CategoryName}}" style="width: 100%; display: block;" data-holder-rendered="true">
+							<div class="card-block">
+								<a href="/subcategory/Category/{{this.Cat_id}}"><h5 class="card-title" style="text-align: center;">{{this.CategoryName}}</h5></a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
+			{{/each}}
+{{!-- 			
   			<div class="col-4 b0b mybg tc">
 				<div class = "imgbg">
 				<div class="thumbnail">
@@ -28,8 +44,6 @@
            			<button type="button" class="btn btn-link mytext"><font color="#000000">Clothes</font></button>
 				</div>
 			</div>
-		</div>
-		<div class = "row">
 			<div class="col-4 b0b mybg tc">
 			<div class = "imgbg">
 				<div class="thumbnail">
@@ -57,8 +71,6 @@
            			<button type="button" class="btn btn-link"><font color="#000000">Furniture</font></button>
 				</div>
 			</div>
-		</div>
-		<div class = "row">
 			<div class="col-4 b0b mybg tc">
 				<div class = "imgbg">
 				<div class="thumbnail">
@@ -86,8 +98,6 @@
            			<button type="button" class="btn btn-link"><font color="#000000">Household Utilities</font></button>
 				</div>
 			</div>
-		</div>
-		<div class = "row">
 			<div class="col-4 b0b mybg tc">
 			<div class = "imgbg">
 				<div class="thumbnail">
@@ -113,7 +123,7 @@
 				<div class="caption mytext">
            			<button type="button" class="btn btn-link"><font color="#000000">Footwear</font></button>
 				</div>
-			</div>
+			</div> --}}
 		</div>
 	</div>
 </div>

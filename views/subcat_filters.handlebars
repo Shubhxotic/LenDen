@@ -46,16 +46,16 @@
 	{{#each Products}}
   <div class="prod-display col-3 h-75" >
       <div class="gallery col-xs-12">   
-       <a target="_blank" href="{{this.ProductImage}}">
+       <a target="_blank" href="/product/{{this._id}}">
     <img src="{{this.ProductImage}}" alt="Pink Hair Dryer" class="w-100" style="height: 300px;">
   </a>
   <div class="desc">
-  	<b>{{this.ProductName}}</b> 
+  	<a href="/product/{{this._id}}"><b>{{this.ProductName}}</b> </a>
   	<br/> 
   	Price: Rs. {{this.Price}}/Day
   	<br/>
-  	<a href="/prodDesc/{{this.Product_id}}"><button type="button" class="btn btn-success "><i class="fa fa-shopping-cart"></i>Add To Cart</button></a>
-    <button type="button" class="btn btn-light  "><i class="fa fa-heart"></i>Add To Wishlist</button>
+  	<a href="/addtocart/{{this.Product_id}}"><button type="button" class="btn btn-success "><i class="fa fa-shopping-cart"></i>Add To Cart</button></a>
+    <a href="/addtowishlist/{{this.Product_id}}"><button type="button" class="btn btn-light  "><i class="fa fa-heart"></i>Add To Wishlist</button></a>
   </div>
   </div>
 	</div>

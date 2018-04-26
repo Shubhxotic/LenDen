@@ -31,24 +31,28 @@ router.get("/temp",function(req,res,next){
 })
 
 router.get("/profile",function(req,res,next){
-  res.render('account', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
-                        css: ['account.css'], layout: "profilepages"
+  db.User.findOne({user: req.user}, function(err, User){
+    if(err){
+        res.send(err);
+    }
+    res.render('personalinfo', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+                        css: ['account.css'], layout: "profilepages", User: User
   });
+});
 })
-
-
-router.get("/profile/personalinfo",function(req,res,next){
-  res.render('personalinfo' ,{csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
-  css: ['account.css'], layout: "profilepages"
-});
-});
-
 
 router.get("/profile/prodborrowed",function(req,res,next){
   res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
   css: ['account.css'], layout: "profilepages"
 });
 });
+
+router.get("/profile/addressChange",function(req,res,next){
+  res.render('addressChange', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+  css: ['account.css'], layout: "profilepages"
+});
+});
+
 
 router.get("/profile/prodlent",function(req,res,next){
   res.render('productslent', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
@@ -118,12 +122,45 @@ router.route("/prodDesc").get(function (req, res) {
   res.render("lenden_pd" , {css:['style.css']});
 })
 
+router.route("/subcat").get(function (req, res) {
+  res.render("subcat_filters",{css: ["subcat_filters.css"]});
+})
+
 router.route("/shoppingcart").get(function (req, res) {
   res.render("navbar");
 })
 
-router.route("/subcat").get(function (req, res) {
-  res.render("subcat_filters",{css: ["subcat_filters.css"]});
+router.route("/addtocart/:productid").post(function (req, res) {
+  db.User.findOne({user: req.user}, function(err, User){
+    if(err){
+        res.send(err);
+    }
+    User["Cart"]=User["Cart"]+","+req.param.productid;
+    db.User.save(User, function(err, user){
+      if(err){
+          res.send(err);
+      }
+    res.render("navbar" , {User: user});
+      // res.json(task);
+  });
 })
+});
+
+router.route("/addtowishlist/:productid").post(function (req, res) {
+  db.User.findOne({user: req.user}, function(err, User){
+    if(err){
+        res.send(err);
+    }
+    User["Wishlist"]=User["Wishlist"]+","+req.param.productid;
+    db.User.save(User, function(err, user){
+      if(err){
+          res.send(err);
+      }
+    res.render("navbar" , {User: user});
+      // res.json(task);
+  });
+})
+});
+
 
 module.exports = router;

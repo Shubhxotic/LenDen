@@ -2,8 +2,14 @@ var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
 var nodemailer = require('nodemailer');
+var session = require('express-session');
+var bodyParser = require('body-parser');
 var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", ['User']);
 var User= require("../models/user");
+// var pupup=require("popups");
+
+
+var sess;
 
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
@@ -51,15 +57,40 @@ router.get('/user/:id', function(req, res, next){
 
 router.post('/signup', function(req, res, next){
   var task = req.body;
-  console.log("ddaoidsai");
+  console.log("Entered signup");
+        task["AdminToken"] = "0";
+        console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
+        task["RewardPts"] = "200";
+        console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
+
+        task["Wishlist"] = "";
+        console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
+
+        task["Cart"] = "";
+
+        console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
+        console.log("User object= "+JSON.stringify(task));
+        db.User.find({email: task.email}, function(err, userx){
+            // console.log(JSON.stringify(userx));
+            if(err){
+                res.json(err);
+            }
+            if(userx.length!=0){
+                // alert("This Email is Already Registered.");
+                // popup.alert({ 
+                //     content: "This Email is Already Registered."
+                // })
+                console.log("This Email is Already Registered.");
+                res.send("Already Registered");
+            }    
       db.User.save(task, function(err, task){
           if(err){
             alert("Error");    
               res.json({success: false, msg: "Failed to register User"});
           }
-      var user = req.body.user;
+      var email = req.body.email;
         var mailOptions={
-            to : user,
+            to : email,
             subject : 'email from nodeJS',
             text : 'Yayy! it finally worked!'
         }
@@ -70,20 +101,46 @@ router.post('/signup', function(req, res, next){
             res.end("error");
          }else{
                 console.log("Message sent");
+                res.redirect("/");
             //res.end("sent");
           }
+            });
+        });
     });
-});
 });
 
 router.post('/signin', function(req, res, next){
-  var user = req.body.email;
-  db.User.findOne({user: mongojs.ObjectId(req.params.email)}, function(err, User){
+  var emails = req.body.email;
+  sess=req.session;
+  console.log("Session=  "+JSON.stringify(sess)+" \n\n\n\n\n");
+  console.log("email= "+emails);
+  db.User.findOne({email: emails}, function(err, User){
       if(err){
-          res.send(err);
+        alert("This Email is not Registered.");
+        res.render("/"); 
+        // res.send("Error occured:- "+JSON.stringify(err));
+      }
+      console.log("User=   "+JSON.stringify(User)+"\n\n\n\n\n\n\n");
+      if(User.pass==req.body.pass)
+      {
+        sess.email=User.email;
+        sess.username=User.username;  
+          //   sess[email]=emails;
       }
       res.json(User);
   });
+});
+
+
+
+router.get('/logout',function(req,res){
+    req.session.destroy(function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        res.redirect('/');
+      }
+    });
 });
 
 module.exports = router;

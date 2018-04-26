@@ -6,16 +6,17 @@
     
       <div class="w3-container w3-padding-16">
         <div class="row">
-          
+          {{#each Products}}
             <div class="p1 col-sm-2 b0b">
-              <img src="https://rukminim1.flixcart.com/image/832/832/backpack/g/y/d/07171203-puma-backpack-echo-plus-original-imae8jq7fuxzdmeq.jpeg?q=70" width="300" height="200"> 
+              <a href="/product/{{this._id}}"></a> <img src="{{this.ProductImage}}" width="300" height="200"> 
             </div>
             <div class="mycart col-sm-10 b0b">
-              <strong>Product Name</strong> : Puma Backpack<br>
-              <strong>Cost</strong> : Rs. 600<br>
-              <strong>Quantity</strong> : 1<br>
+              <strong>Product Name</strong> : {{this.ProductName}}<br>
+              <strong>Cost</strong> : Rs. {{this.Price}}<br>
+              {{!-- <strong>Quantity</strong> : 2<br> --}}
             </div>
-          
+          {{/each}}
+{{!--           
           <div class="p1 col-sm-2 b0b">
             <img src ="tshirt.jpg" width ="300" height="200">
           </div>
@@ -40,7 +41,7 @@
             <strong>Product Name</strong> : Red Cardinal Chair<br>
             <strong>Cost</strong> : Rs. 650<br>
             <strong>Quantity</strong> : 1<br>
-          </div>
+          </div> --}}
         </div>
       </div>
   </div>

@@ -1,12 +1,22 @@
 <div class="w3-main" style="margin-left:300px;">
  <header class="w3-container" style="padding-top:22px">
-    <h5 style=" font-style: "><b> Products Borrowed </b></h5>
+    <h5 style=" font-style: "><b> Products Wishlist </b></h5>
   </header>
   <div class="w3-row-padding w3-margin-bottom">
     
       <div class="w3-container w3-padding-16">
         <div class="row">
-          
+          {{#each Products}}
+            <div class="p1 col-sm-2 b0b">
+              <a href="/product/{{this._id}}"></a> <img src="{{this.ProductImage}}" width="300" height="200"> 
+            </div>
+            <div class="mycart col-sm-10 b0b">
+              <strong>Product Name</strong> : {{this.ProductName}}<br>
+              <strong>Cost</strong> : Rs. {{this.Price}}<br>
+              {{!-- <strong>Quantity</strong> : 2<br> --}}
+            </div>
+          {{/each}}
+{{!--           
             <div class="p1 col-sm-2 b0b">
               <img src="https://rukminim1.flixcart.com/image/832/832/backpack/g/y/d/07171203-puma-backpack-echo-plus-original-imae8jq7fuxzdmeq.jpeg?q=70" width="300" height="200"> 
             </div>
@@ -40,7 +50,7 @@
             <strong>Product Name</strong> : Red Cardinal Chair<br>
             <strong>Cost</strong> : Rs. 650<br>
             <strong>Quantity</strong> : 1<br>
-          </div>
+          </div> --}}
         </div>
       </div>
   </div>

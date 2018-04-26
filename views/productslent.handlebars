@@ -7,8 +7,17 @@
     
       <div class="w3-container w3-padding-16">
         <div class="row">
-          
+          {{#each Products}}
             <div class="p1 col-sm-2 b0b">
+              <a href="/product/{{this._id}}"></a> <img src="{{this.ProductImage}}" width="300" height="200"> 
+            </div>
+            <div class="mycart col-sm-10 b0b">
+              <strong>Product Name</strong> : {{this.ProductName}}<br>
+              <strong>Cost</strong> : Rs. {{this.Price}}<br>
+              {{!-- <strong>Quantity</strong> : 2<br> --}}
+            </div>
+          {{/each}}
+            {{!-- <div class="p1 col-sm-2 b0b">
               <img src="hair-dryer.jpeg" width="300" height="200"> 
             </div>
             <div class="mycart col-sm-10 b0b">
@@ -41,7 +50,7 @@
             <strong>Product Name</strong> : Mast and Harbour Women heels(Size : 6)<br>
             <strong>Cost</strong> : Rs. 749<br>
             <strong>Quantity</strong> : 1<br>
-          </div>
+          </div> --}}
         </div>
       </div>
   </div>

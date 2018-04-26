@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var session = require('express-session');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -49,7 +50,7 @@ app.set('view engine', 'handlebars');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(session({secret: 'ssshhhhh'}));
 app.use(cookieParser());
 app.use("/static",express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -86,6 +87,6 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(3000,function(){
-  console.log(' Server started on port 3000.....');
+app.listen(3100,function(){
+  console.log(' Server started on port 3100.....');
 });

@@ -34,7 +34,7 @@ router.get("/Category/:categoryId", function(req,res,next){
                 }
                 
                 //Render the template   
-                res.render("subcat_filters",{Products: Products, Subcategories: Subcategories, Categories:Category});
+                res.render("subcat_filters",{Products: Products, Subcategories: Subcategories, Categories:Category, authenticated: req.session.email});
             })
             //Render the template
             // res.render("subcat_filters",{Products: Products});
@@ -48,9 +48,7 @@ router.get("/Subcategory/:subcategoryId", function(req,res,next){
         console.log(req.user);
     db.Category.find(function(err, Category){
         if(err){
-            
             res.send(err);
-            
         }           
         db.Product.find({"Subcat_id": req.params.subcategoryId}, function(err, Products){
                 if(err){

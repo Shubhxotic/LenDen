@@ -59,16 +59,16 @@ router.post('/signup', function(req, res, next){
   var task = req.body;
   console.log("Entered signup");
         task["AdminToken"] = "0";
-        console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
+        // console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
         task["RewardPts"] = "200";
-        console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
+        // console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
 
         task["Wishlist"] = "";
-        console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
+        // console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
 
         task["Cart"] = "";
 
-        console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
+        // console.log("asdiashdioashidhasoidhoiasdhiasdhoiasdo");
         console.log("User object= "+JSON.stringify(task));
         db.User.find({email: task.email}, function(err, userx){
             // console.log(JSON.stringify(userx));
@@ -81,7 +81,7 @@ router.post('/signup', function(req, res, next){
                 //     content: "This Email is Already Registered."
                 // })
                 console.log("This Email is Already Registered.");
-                res.send("Already Registered");
+                res.send('Already Registered  <a href="/"><button class="btn btn-primary">Go to Home</button></a>');
             }    
       db.User.save(task, function(err, task){
           if(err){
@@ -95,22 +95,24 @@ router.post('/signup', function(req, res, next){
             text : 'Yayy! it finally worked!'
         }
         console.log(mailOptions);
-        smtpTransport.sendMail(mailOptions, function(error, response){
-         if(error){
-                console.log(error);
-            res.end("error");
-         }else{
-                console.log("Message sent");
-                res.redirect("/");
-            //res.end("sent");
-          }
-            });
+        // smtpTransport.sendMail(mailOptions, function(error, response){
+        //  if(error){
+        //         console.log(error);
+        //     res.end("error");
+        //  }else{
+        //         console.log("Message sent");
+        //         res.redirect("/");
+        //     //res.end("sent");
+        //   }
+        //     });
+        res.redirect("/");
         });
     });
 });
 
 router.post('/signin', function(req, res, next){
-  var emails = req.body.email;
+  console.log("Entered Signin");
+    var emails = req.body.email;
   sess=req.session;
   console.log("Session=  "+JSON.stringify(sess)+" \n\n\n\n\n");
   console.log("email= "+emails);
@@ -127,18 +129,22 @@ router.post('/signin', function(req, res, next){
         sess.username=User.username;  
           //   sess[email]=emails;
       }
-      res.json(User);
+      else{
+            res.send('Unable to LogIn <a href="/"><button class="btn btn-primary">Go to Home</button></a>');
+      }
+      res.redirect('back');
+    //   res.redirect(req.get('referer'));
+    //   res.redirect("/");
   });
 });
-
-
 
 router.get('/logout',function(req,res){
     req.session.destroy(function(err) {
       if(err) {
         console.log(err);
       } else {
-        res.redirect('/');
+        // res.redirect('/');
+        res.redirect(req.get('referer'));
       }
     });
 });

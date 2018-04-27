@@ -87,6 +87,6 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(3100,function(){
-  console.log(' Server started on port 3100.....');
+app.listen(3200,function(){
+  console.log(' Server started on port 3200.....');
 });

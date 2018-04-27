@@ -9,11 +9,25 @@
  			</form>
  			<div class="col-1"></div>
 
- 			<div class="col-3">
- 				<!-- <p>Hiii {{name}}!!</p> -->
- 				<button class="btn btn-info pull-right" data-toggle="modal" data-target="#signUp">SIGN UP</button>
- 				<button class="btn btn-secondary pull-right mx-2" data-toggle="modal" data-target="#signIn">SIGN IN</button>
- 			</div>
+ 		
+
+
+{{#if authenticated }}
+<div class="col-2 text-white">
+        <button class="btn btn-outline-primary text-primary btn-upload"><span>Upload Item</span></button>
+        <a href="/shoppingcart"><button class="btn btn-xs btn-dark pull-right"><i class="fa fa-shopping-cart fa-2x"></i><label id="lblCartCount">1</label></button></a>
+      </div>
+      <div class="dd dropdown col-1">
+        
+          <button class="btn btn-xs btn-dark dropdown-toggle text-primary" data-toggle="dropdown"><a href="#"><i class="fa fa-user fa-2x"></i></a></button>
+            <div class="list-dd dropdown-menu dropdown-menu-right text-white">
+              <a class="dropdown-item" href="/profile">Profile</a>
+              {{!-- <a class="dropdown-item" href="#">Log In</a> --}}
+              <a class="dropdown-item" href="/users/logout">Log Out <i class="fa fa-sign-out"></i></a>
+            </div>
+      </div>
+{{else}}
+
   <!-- Modal -->
   <div class="modal fade" id="signIn" role="dialog">
     <div class="modal-dialog">
@@ -25,7 +39,7 @@
         </div>
         <div class="modal-body">
 
-      <form class="form-signin" action="users/signin" method="post">
+      <form class="form-signin" action="/users/signin" method="post">
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email"  name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><br>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -79,6 +93,13 @@
 
     </div>
   </div>
+  	<div class="col-3">
+ 				<!-- <p>Hiii {{name}}!!</p> -->
+ 				<button class="btn btn-info pull-right" data-toggle="modal" data-target="#signUp">SIGN UP</button>
+ 				<button class="btn btn-secondary pull-right mx-2" data-toggle="modal" data-target="#signIn">SIGN IN</button>
+ 			</div>
+
+{{/if}}
 
  		</div>
  	</nav>

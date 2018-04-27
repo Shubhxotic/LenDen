@@ -1,0 +1,112 @@
+<div class="header">
+    <h1>Track Shipment</h1>
+</div>
+
+<div class="content">
+    <div class="content1">
+        <h2>Order Tracking: Order No</h2>
+    </div>
+    <div class="content2">
+        <div class="content2-header1">
+            <p>Shipped Via : <span id="t1">BlueDart</span></p>
+        </div>
+        <div class="content2-header1">
+            <p>Status : <span id="t2">Checking Quality</span></p>
+        </div>
+        <div class="content2-header1">
+            <p>Expected Date : <span id="t3">22-Apr-2018</span></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="content3">
+        <div class="shipment">
+            <div class="confirm">
+                <div class="imgcircle">
+                    <img src="/static/confirm.png" alt="confirm order">
+                </div>
+                <span class="line"></span>
+                <p>Confirmed Order</p>
+            </div>
+            <div class="process">
+                <div class="imgcircle">
+                    <img src="/static/process.png" alt="process order">
+                </div>
+                <span class="line"></span>
+                <p>Processing Order</p>
+            </div>
+            <div class="quality">
+                <div class="imgcircle">
+                    <img src="/static/quality.png" alt="quality check">
+                </div>
+                <span class="line"></span>
+                <p>Quality Check</p>
+            </div>
+            <div class="dispatch">
+                <div class="imgcircle">
+                    <img src="/static/dispatch.png" alt="dispatch product">
+                </div>
+                <span class="line"></span>
+                <p>Dispatched Item</p>
+            </div>
+            <div class="delivery">
+                <div class="imgcircle">
+                    <img src="/static/delivery.png" alt="delivery">
+                </div>
+                <p>Product Delivered</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<script  src="http://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+<script>
+    var $status = Math.floor(Math.random()*5+1);
+    if($status==1){
+        document.getElementById("t2").innerHTML = "Confirmed Order";
+    $(".confirm .imgcircle").css("background-color","#98D091");
+}
+else
+    if($status==2){
+        document.getElementById("t2").innerHTML = "Processing";
+    $(".confirm .imgcircle").css("background-color","#98D091");
+    $(".confirm span.line").css("background-color","#98D091");
+     $(".process .imgcircle").css("background-color","#98D091");
+}
+else
+    if($status==3){
+        document.getElementById("t2").innerHTML = "Quality Checked";
+    $(".confirm .imgcircle").css("background-color","#98D091");
+    $(".confirm span.line").css("background-color","#98D091");
+     $(".process .imgcircle").css("background-color","#98D091");
+    $(".process span.line").css("background-color","#98D091");
+    $(".quality .imgcircle").css("background-color","#98D091");
+}
+else
+    if($status==4){
+    document.getElementById("t2").innerHTML = "Dispatched Item";
+    $(".confirm .imgcircle").css("background-color","#98D091");
+    $(".confirm span.line").css("background-color","#98D091");
+     $(".process .imgcircle").css("background-color","#98D091");
+    $(".process span.line").css("background-color","#98D091");
+    $(".quality .imgcircle").css("background-color","#98D091");
+    $(".quality span.line").css("background-color","#98D091");
+    $(".dispatch .imgcircle").css("background-color","#98D091");
+}
+else
+    if($status==5){
+        document.getElementById("t2").innerHTML = "Delivered";
+        document.getElementById("t2").innerHTML = "-";
+    $(".confirm .imgcircle").css("background-color","#98D091");
+    $(".confirm span.line").css("background-color","#98D091");
+     $(".process .imgcircle").css("background-color","#98D091");
+    $(".process span.line").css("background-color","#98D091");
+    $(".quality .imgcircle").css("background-color","#98D091");
+    $(".quality span.line").css("background-color","#98D091");
+    $(".dispatch .imgcircle").css("background-color","#98D091");
+    $(".dispatch span.line").css("background-color","#98D091");
+    $(".delivery .imgcircle").css("background-color","#98D091");
+    $(".delivery span.line").css("background-color","#98D091");
+}
+</script>

@@ -1,6 +1,3 @@
-<p>klandoasodisanodinso</p>
-{{!-- <p>sdasd</p>
-
 <div class="container">
 		<br>
 		<h1> <i>Shopping Cart &nbsp;</i><i class="fa fa-shopping-cart"  style="color: #444;"></i> </h1><br>
@@ -16,10 +13,10 @@
 				<div class="col-9 my-auto">
 					<h5 class="card-title">{{this.ProductName}}</h5>
 					{{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-					<a href="#" class="btn btn-outline-success">Buy Now</a>
+					<a href="/buying/{{this._id}}" class="btn btn-outline-success rentbtn">Rent Now</a>
 					<a href="#" class="btn btn-outline-danger">Remove From Cart <i class="fa fa-trash "></i></a>
 					
-					<button class="btn  pull-right  mx-4">{{this.Price} /Day</button> <!-- {{Price}} -->
+					<div class="btn  pull-right btn-secondary mx-4"><i class="fa fa-rupee"></i>{{this.Price}} /Day</div> <!-- {{Price}} -->
 					{{!-- <button class="btn btn-outline-danger  pull-right  "><i class="fa fa-minus"></i></button> <!-- {{Price}} --> --}}
 					{{!-- <button class="btn btn-outline-light  pull-right   text-dark">2</button> --}}
 					{{!-- <button class="btn btn-outline-success pull-right  "><i class="fa fa-plus"></i></button> <!-- {{Price}} --> --}}
@@ -28,9 +25,9 @@
 		</div>	
 			<div class=" row my-4">
 				<div class="col-9"></div>
-				<div class="col-3 row">
-					<span class="pull-right col-4 text-center my-auto"><i class="fa fa-rupee">1200.0</i></span>
-					<button class="btn btn-primary pull-right col-8 text-center">Rent Now</button>
+				<div class="col-3 row ">
+					{{!-- <span class="pull-right col-4 text-center my-auto"><i class="fa fa-rupee">1200.0</i></span> --}}
+						{{!-- <button class="btn btn-info col-8 pull-right text-center float-right b0b">Rent Now</button> --}}
 				</div>
 			</div>
 		{{/each}}	
@@ -45,7 +42,7 @@
 			<div class="card mx-1 px-auto" style="width: 17rem;">
 				<img class="card-img-top w-75 mx-auto" src="https://rukminim1.flixcart.com/image/832/832/backpack/g/y/d/07171203-puma-backpack-echo-plus-original-imae8jq7fuxzdmeq.jpeg?q=70" alt="Card image cap">
 				<div class="card-body text-center">
-					<h5> Puma EX-78 Backpack </h5>
+					<h5> Puma EX-78 Backpack</h5>
 					<span class="text-secondary my-2"><i class="fa fa-rupee">600.0</i></span><br><br>
 					<button class="btn btn-info">Move to Bag</button>
 				</div>
@@ -79,4 +76,9 @@
 			</div> -->
 		</div>
 	</div>
-	<br><br>	 --}}
+	<br><br>
+	<script>
+		$(".rentbtn").click(function(){
+			alert("Item Rentedd Successfully");
+		});
+	</script>

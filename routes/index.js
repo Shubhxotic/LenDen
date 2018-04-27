@@ -45,16 +45,16 @@ router.get("/profile",function(req,res,next){
   });
 })
 
-router.get("/profile/prodborrowed",function(req,res,next){
-  db.ProductsDen.find({User_id: req.user}, function(err, Product){
-    if(err){
-      res.send(err);
-    }
-    res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
-      css: ['account.css'], layout: "profilepages", Products: Product, authenticated: req.session.email
-    });
-  });
-});
+// router.get("/profile/prodborrowed",function(req,res,next){
+//   db.ProductsDen.find({User_id: req.user}, function(err, Product){
+//     if(err){
+//       res.send(err);
+//     }
+//     res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+//       css: ['account.css'], layout: "profilepages", Products: Product, authenticated: req.session.email
+//     });
+//   });
+// });
 
 router.get("/profile/addressChange",function(req,res,next){
   res.render('addressChange', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
@@ -73,20 +73,29 @@ router.post("/profile/addressChange",function(req,res,next){
 });
 
 
-router.get("/profile/prodlent",function(req,res,next){
+router.get("/profile/prodlent",function(req,res){
   // Extract Products according to User_id. These are the Products Lent
-  db.User.find({email: req.session.email}, function(err, User){
+  db.User.findOne({email: req.session.email}, function(err, User){
     if(err){
       res.send(err);
     }
-      db.Product.find({User_id:  mongojs.ObjectId(User._id)}, function(err, Product){
-    if(err){
-      res.send(err);
-    }
-    res.render('productslent', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
-    css: ['account.css'], layout: "profilepages", authenticated: req.session.email
+    if(User){
+      console.log(JSON.stringify(User));
+      x={User_id:  mongojs.ObjectId(User._id)};
+      console.log("x=" +User._id);
+      db.Product.find({User_id: User._id}, function(err, Product){
+      if(err){
+        res.send(err);
+      }
+      console.log("Products-======= "+JSON.stringify(Product));
+      res.render('productslent', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+      css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products:Product
+      });
     });
-  });
+  }
+  else{
+    res.redirect("/");
+  }
 });
 });
 
@@ -98,17 +107,43 @@ router.get("/profile/giftcards",function(req,res,next){
 
 
 router.get("/profile/prodborrowed",function(req,res,next){
-  res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
-    css: ['account.css'], layout: "profilepages", authenticated: req.session.email
-  });
-});
-
-router.get("/profile/wishlist",function(req,res,next){
+  // res.redirect("/profile");
   db.User.findOne({email: req.session.email}, function(err, User){
     if(err){
       res.send(err);
     }
     console.log("User=== "+JSON.stringify(User));
+    // res.redirect("/profile");
+    if(User){
+      // let x=User["Wish"someobj==="+someobj+"\n\n\n\n");
+      var po={User_id: mongojs.ObjectId(User._id)}
+      console.log("aopdjpoasdpasopdaspd====="+JSON.stringify(po));
+      db.ProductsDen.findOne({User_id: mongojs.ObjectId("5ae2104ae335af6c7f1d8a60")} , function(err, Product){
+          if(err){
+            res.send(err);
+          }
+          else{
+            console.log("PRODUCT:- Product"+ JSON.stringify(Product)+"\n\n");
+            // res.render("navbar", {authenticated: req.session.email, Products: Product});
+            res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+              css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products: Product
+            });
+          }
+        });
+      }
+  
+  
+});
+});
+
+router.get("/profile/wishlist",function(req,res,next){
+  console.log("YOlo");
+  db.User.findOne({email: req.session.email}, function(err, User){
+    if(err){
+      res.send(err);
+    }
+    console.log("User=== "+JSON.stringify(User));
+    // res.redirect("/profile");
     if(User){
       let x=User["Wishlist"];
       x=x.split(",");
@@ -118,38 +153,31 @@ router.get("/profile/wishlist",function(req,res,next){
       if(x[0].trim().length==0){
         x.shift();
       }
+      console.log(x);    
+      query=[];
       for(var i=0;i<x.length;i++){
-        console.log("YOOOOOOOOOO");
-      // db.Product.find({_id: mongojs.ObjectId(x[i])}, function(err, Product){
-      //     if(err){
-      //       res.send(err);
-      //     }
-      //     else{
-      //       console.log(JSON.stringify(Product[0]));
-      //       Products.push(Product[0]);
-      //     }
-      //   });
-        db.collection("Product", function(err, collection)
-        {
-            collection.findOne({_id: mongojs.ObjectId(x[i])}, function(err, thing)
-            {       
-                // console.log("Thing==== "+JSON.stringify(thing));                
-                // callback(err, thing);
-            }).then()
+        temp={};
+        temp["_id"]=mongojs.ObjectId(x[i]);
+        query.push(temp);
+      }
+        console.log("YOOOOOOOOOO"+query);
+        console.log(query.length);
+        console.log(typeof(query));
+          someobj={};
+          someobj["$or"]=query;
+          console.log("someobj==="+someobj+"\n\n\n\n");
+      db.Product.find( {$or: query}, function(err, Product){
+          if(err){
+            res.send(err);
+          }
+          else{
+            console.log(Product);
+            res.render("productswishlist", {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+            css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products: Product});
+          }
         });
       }
-      console.log("Products======="+Products+"\n\n\n\n\n");
-      // res.render("navbar", {authenticated: req.session.email,Products: Products});
-      res.render('productswishlist', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
-          css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products: Products
-  });
-    }
-    else{
-      // res.render("navbar", {authenticated: req.session.email,Products: Products});
-      res.redirect("/");
-    }
     });
-  
 });
 
 router.get("/profile/lendencred",function(req,res,next){
@@ -213,11 +241,13 @@ router.route("/payment").get(function (req, res) {
 
 
 router.route("/shoppingcart").get(function (req, res) {
+  // res.redirect("/profile");
   db.User.findOne({email: req.session.email}, function(err, User){
     if(err){
       res.send(err);
     }
     console.log("User=== "+JSON.stringify(User));
+    // res.redirect("/profile");
     if(User){
       let x=User["Cart"];
       x=x.split(",");
@@ -227,40 +257,50 @@ router.route("/shoppingcart").get(function (req, res) {
       if(x[0].trim().length==0){
         x.shift();
       }
-
+      console.log(x);    
       query=[];
       for(var i=0;i<x.length;i++){
         temp={};
-        temp["_id"]=x[i];
+        temp["_id"]=mongojs.ObjectId(x[i]);
         query.push(temp);
       }
-
         console.log("YOOOOOOOOOO"+query);
-      db.Product.find({ $or: query}, function(err, Product){
+        console.log(query.length);
+        console.log(typeof(query));
+          someobj={};
+          someobj["$or"]=query;
+          console.log("someobj==="+someobj+"\n\n\n\n");
+      db.Product.find( {$or: query}, function(err, Product){
           if(err){
             res.send(err);
           }
           else{
             console.log(Product);
-            res.render("navbar", {authenticated: req.session.email,Products: Product});
+            // res.render("productswishlist", {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+            // css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products: Product});
+            // res.render("personalinfo");
+            console.log("daisdoiasdoiasjdoasoidasoidasiodasiodoiasdnoasidoiasbdoiasbdoas");
+            res.render("navbar");
+            // res.redirect("back");
           }
         });
-        // db.collection("Product", function(err, collection)
-        // {
-        //     collection.findOne({_id: mongojs.ObjectId(x[i])}, function(err, thing)
-        //     {       
-        //         console.log("Thing==== "+JSON.stringify(thing));                
-        //         // callback(err, thing);
-        //     })
-        // });
+      }
+    //     // db.collection("Product", function(err, collection)
+    //     // {
+    //     //     collection.findOne({_id: mongojs.ObjectId(x[i])}, function(err, thing)
+    //     //     {       
+    //     //         console.log("Thing==== "+JSON.stringify(thing));                
+    //     //         // callback(err, thing);
+    //     //     })
+    //     // });
       
-      console.log("Products======="+Products+"\n\n\n\n\n");
-      res.render("navbar", {authenticated: req.session.email,Products: Products});
-    }
-    else{
-      // res.render("navbar", {authenticated: req.session.email,Products: Products});
-      res.redirect("/");
-    }
+    //   console.log("Products======="+Products+"\n\n\n\n\n");
+    //   res.render("navbar", {authenticated: req.session.email,Products: Products});
+    // }
+    // else{
+    //   // res.render("navbar", {authenticated: req.session.email,Products: Products});
+    //   res.redirect("/");
+    // }
     });
 })
 
@@ -301,7 +341,8 @@ router.route("/addtocart/:productid").post(function (req, res) {
         if(err){
           res.send(err);
         }
-        res.redirect("/shoppingcart" );
+        // res.redirect("/shoppingcart" );
+        res.redirect("back");
         // res.json(task);
       });
     }
@@ -312,21 +353,46 @@ router.route("/addtocart/:productid").post(function (req, res) {
 });
 
 router.route("/addtowishlist/:productid").post(function (req, res) {
+  console.log("adiajsoidasidjoas dsd asiodj asiodj iasodj asoidjasio d\n\n");
   db.User.findOne({email: req.session.email}, function(err, User){
     if(err){
       res.send(err);
     }
-    User["Wishlist"]=User["Wishlist"]+","+req.params.productid;
-    console.log("New User Object= "+JSON.stringify(User));
-    db.User.save(User, function(err, user){
-      if(err){
-        res.send(err);
-      }
-    // res.render("navbar" , {User: user});
-    res.redirect("/profile/productsborrowed")
-      // res.json(task);
-    });
+    
+    console.log("User=== "+JSON.stringify(User));
+    if(User){
+      User["Wishlist"]=User["Wishlist"]+","+req.params.productid;
+      console.log(JSON.stringify(User));
+      db.User.save(User, function(err, user){
+        if(err){
+          res.send(err);
+        }
+        // res.redirect("/shoppingWishlist" );
+        res.redirect("back");
+          // res.json(task);
+        // res.redirect("/profile/productsborrowed");
+      });
+    }
+    else{
+      res.redirect("back");
+    }
   })
+
+  // db.User.findOne({email: req.session.email}, function(err, User){
+  //   if(err){
+  //     res.send(err);
+  //   }
+  //   User["Wishlist"]=User["Wishlist"]+","+req.params.productid;
+  //   console.log("New User Object= "+JSON.stringify(User));
+  //   db.User.save(User, function(err, user){
+  //     if(err){
+  //       res.send(err);
+  //     }
+  //   // res.render("navbar" , {User: user});
+  //   res.redirect("/profile/productsborrowed")
+  //     // res.json(task);
+  //   });
+  // })
 });
 
 module.exports = router;

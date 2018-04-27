@@ -13,18 +13,19 @@
 
 
 {{#if authenticated }}
-<div class="col-2 text-white">
-        <button class="btn btn-outline-primary text-primary btn-upload"><span>Upload Item</span></button>
-        <a href="/shoppingcart"><button class="btn btn-xs btn-dark pull-right"><i class="fa fa-shopping-cart fa-2x"></i><label id="lblCartCount">1</label></button></a>
-      </div>
-      <div class="dd dropdown col-1">
-        
-          <button class="btn btn-xs btn-dark dropdown-toggle text-primary" data-toggle="dropdown"><a href="#"><i class="fa fa-user fa-2x"></i></a></button>
-            <div class="list-dd dropdown-menu dropdown-menu-right text-white">
+    <div class="col-5 text-white row  ">
+        <button class="btn btn-outline-info text-info btn-upload col-3"><span>Upload Item</span></button>
+      
+      <div class="dd dropdown col-5 ">
+            <a href="/shoppingcart" class="col-2"><button class="btn btn-xs btn-dark "><i class="fa fa-shopping-cart fa-2x text-info"></i><label id="lblCartCount">1</label></button></a>
+          
+          <button class="btn btn-xs btn-dark dropdown-toggle text-info" data-toggle="dropdown"><a href="#"><i class="fa fa-user fa-2x text-info"></i></a></button>
+            <div class="list-dd dropdown-menu dropdown-menu-right text-white bg-white">
               <a class="dropdown-item" href="/profile">Profile</a>
               {{!-- <a class="dropdown-item" href="#">Log In</a> --}}
               <a class="dropdown-item" href="/users/logout">Log Out <i class="fa fa-sign-out"></i></a>
             </div>
+      </div>
       </div>
 {{else}}
 

@@ -7,8 +7,8 @@
       <div class="w3-container w3-padding-16">
         <div class="row">
           {{#each Products}}
-            <div class="p1 col-sm-2 b0b">
-              <a href="/product/{{this._id}}"></a> <img src="{{this.ProductImage}}" width="300" height="200"> 
+            <div class="p1 col-sm-2 b0b" style="border: 1px solid black;">
+              <a href="/product/{{this._id}}" calss="b0b" ></a> <img src="{{this.ProductImage}}" width="100%;" > 
             </div>
             <div class="mycart col-sm-10 b0b">
               <strong>Product Name</strong> : {{this.ProductName}}<br>

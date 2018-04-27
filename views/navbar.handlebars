@@ -14,7 +14,7 @@
 					<h5 class="card-title">{{this.ProductName}}</h5>
 					{{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
 					<a href="/buying/{{this._id}}" class="btn btn-outline-success rentbtn">Rent Now</a>
-					<a href="#" class="btn btn-outline-danger">Remove From Cart <i class="fa fa-trash "></i></a>
+					<a href="/deleting/{{this._id}}" class="btn btn-outline-danger delbtn">Remove From Cart <i class="fa fa-trash "></i></a>
 					
 					<div class="btn  pull-right btn-secondary mx-4"><i class="fa fa-rupee"></i>{{this.Price}} /Day</div> <!-- {{Price}} -->
 					{{!-- <button class="btn btn-outline-danger  pull-right  "><i class="fa fa-minus"></i></button> <!-- {{Price}} --> --}}
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 		{{/each}}	
-		<h1>Wishlist <i class="fa fa-heart" style="color: #B00;"></i></h1>
+		{{!-- <h1>Wishlist <i class="fa fa-heart" style="color: #B00;"></i></h1>
 		<!-- <div class="row mx-0 b0b" style="position: relative;width: 150%;">
 			<p>Spdposd</p>
 		</div> -->
@@ -74,11 +74,14 @@
 			<!-- <div class=" py-auto text-center" style="width: 2rem;" >
 				<div class=" my-auto"><i class=" fa fa-arrow-right"></i></div>
 			</div> -->
-		</div>
+		</div> --}}
 	</div>
 	<br><br>
 	<script>
 		$(".rentbtn").click(function(){
 			alert("Item Rentedd Successfully");
+		});
+		$(".delbtn").click(function(){
+			alert("Item Removed Successfully");
 		});
 	</script>

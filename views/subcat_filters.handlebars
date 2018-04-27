@@ -54,8 +54,8 @@
   	<br/> 
   	Price: Rs. {{this.Price}}/Day
   	<br/>
-  	<form method="POST" action="/addtocart/{{this._id}}"><button type="submit" class="btn btn-success"><i class="fa fa-shopping-cart"></i>Add To Cart</button></form>
-    <form method="POST" action="/addtowishlist/{{this._id}}"><button type="submit" class="btn btn-light"><i class="fa fa-heart"></i>Add To Wishlist</button></form>
+  	<form method="POST" action="/addtocart/{{this._id}}"><button type="submit" class="btn btn-success cartadd" id=""><i class="fa fa-shopping-cart"></i>Add To Cart</button></form>
+    <form method="POST" action="/addtowishlist/{{this._id}}"><button type="submit" class="btn btn-light wishadd"><i class="fa fa-heart"></i>Add To Wishlist</button></form>
   </div>
   </div>
 	</div>
@@ -105,3 +105,11 @@
 </div>
 <br>
 
+<script>
+  $(".cartadd").click(function(){
+      alert("Added to Cart Successfully");
+    });
+    $(".wishadd").click(function(){
+      alert("Added to Wishlist Successfully");
+    });
+</script>

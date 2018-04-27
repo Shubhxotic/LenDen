@@ -258,6 +258,20 @@ router.get("/contact",function(req,res,next){
 });
 })
 
+
+router.get("/contactfromthismail",function(req,res,next){
+  res.render('contactfromthismail', {authenticated: req.session.email });
+})
+
+router.get("/giftcards",function(req,res,next){
+  res.render('giftcards', {authenticated: req.session.email });
+})
+router.get("/giftfromthismail",function(req,res,next){
+  res.render('giftfromthismail', {authenticated: req.session.email });
+})
+
+
+
 router.route("/prodDesc").get(function (req, res) {
   res.render("lenden_pd" , {css:['style.css'], authenticated: req.session.email});
 })
@@ -319,6 +333,10 @@ router.route("/shoppingcart").get(function (req, res) {
     }
   });
 })
+
+// router.get("/admin",function(req,res,next){
+//   res.sendFile("/views/admin_account.html");
+// });
 
 router.get("/trackorder",function(req,res,next){
   res.render('track_order', {csslinks: ["//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic"],
@@ -444,7 +462,7 @@ router.route("/buying/:productid").get(function (req, res) {
       for(var i=0;i<x.length;i++)
       {
         if(x[i]!=req.params.productid){
-          cart.push(req.params.productid);
+          cart.push(x[i]);
         }
       } 
       console.log(cart);
@@ -482,5 +500,54 @@ router.route("/buying/:productid").get(function (req, res) {
       });
     }
   })
-});  
+});
+
+
+
+
+router.route("/deleting/:productid").get(function (req, res) {
+  // res.redirect("/profile");
+  // console.log("\n\n\nEntered A route\n\n\n\n");
+  db.User.findOne({email: req.session.email}, function(err, User){
+    if(err){
+      res.send(err);
+    }
+    console.log("User=== "+JSON.stringify(User));
+    // res.redirect("/profile");
+    if(User){
+      let x=User["Cart"];
+      console.log("\n\nInitial Cart=" +User.Cart+" \n\n");
+      x=x.split(",");
+      Products=[]
+      // console.log("Cart= "+x);
+      // console.log("Product==="+Products);
+      if(x[0].trim().length==0){
+        x.shift();
+      }
+      console.log(x);   
+      let cart=[];
+      for(var i=0;i<x.length;i++)
+      {
+        if(x[i]!=req.params.productid){
+          cart.push(x[i]);
+        }
+      } 
+      console.log(cart);
+      User["Cart"]= cart.join(",");
+      console.log("User.cart== "+User.Cart);
+      //Remove from Cart
+      db.User.update({_id: mongojs.ObjectId(""+User._id)},User ,function(err,User){
+        if(err){
+          res.json(User);
+        }
+        else{
+          console.log(JSON.stringify(User));
+          console.log("Successfully Deleted");
+          res.redirect("back");
+        }
+      });
+    }
+  })
+});
+
 module.exports = router;

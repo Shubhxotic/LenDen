@@ -35,7 +35,8 @@ router.post('/', function(req, res, next){
          }else{
                 console.log("Message sent");
               //  res.redirect("/");
-                res.render("giftcards",{data: req.body,status:'SUCCESS NOTICE: We sent your giftcard, why not buy a gift item with your Lenden credits?'});
+                // res.render("giftcards",{data: req.body,status:'SUCCESS NOTICE: We sent your giftcard, why not buy a gift item with your Lenden credits?'});
+                res.redirect("/profile/giftcards");
             //res.end("sent");
           }
             });

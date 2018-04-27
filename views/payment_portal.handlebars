@@ -1,46 +1,130 @@
-
 <center><h1>Select a Payment Method</h1></center>
-<div class="row">
-    <div class="col-lg-1"></div>
 <div class="col-lg-10 col-xs-12 card payment-methods">
   <div class="card-body">
-    <div class="radio">
-      <label><input type="radio" name="optradio">Credit Card</label>
-      <p>
-        <a href="http://www.credit-card-logos.com/"><img alt="Credit Cards" title="Credit Card Logos" src="http://www.credit-card-logos.com/images/visa_credit-card-logos/visa_mastercard_2.gif" width="116" height="35" border="0" /></a>
-      </p>
-    </div>
-    <div class="radio">
-      <label><input type="radio" name="optradio">Debit Card</label>
-    </div>
-    <div class="dropdown">
-      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-        Choose an Option
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">All Visa/MasterCard Debit Cards</a>
-        <a class="dropdown-item" href="#">All Rupay Debit Cards</a>
-        <a class="dropdown-item" href="#">All SBI Maestro Debit Cards</a>
+   <div class="radio">
+  <label><input type="radio" name="optradio">Credit Card</label>
+  <p>
+  <a href="http://www.credit-card-logos.com/"><img alt="Credit Cards" title="Credit Card Logos" src="http://www.credit-card-logos.com/images/visa_credit-card-logos/visa_mastercard_2.gif" width="116" height="35" border="0" /></a>
+  </p>
+</div>
+<div class="radio">
+  <label><input type="radio" name="optradio">Debit Card</label>
+</div>
+<div class="dropdown">
+	 <div class="form-row">
+  	<div class="col-md-6 mb-3">
+      <label for="validationCustom03">Choose an Option</label>
+      <select class="form-control" id="sel1" required>
+      	<option value="" selected disabled>Please select</option>
+    <option>All Visa/MasterCard Debit Cards</option>
+    <option>All Rupay Debit Cards</option>
+    <option>All SBI Maestro Debit Cards</option>
+    </select>
+      <div class="invalid-feedback">
+        Select a Category
       </div>
     </div>
-    <p>
-      <div class="radio">
-        <label><input type="radio" name="optradio">Netbanking</label>
+</div>
+<!-- Trigger the modal with a button -->
+		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >Enter Credentials</button>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog" >
+			<div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--h4 class="modal-title">Card Details </h4-->
+					</div>
+					<div class="modal-body">
+						<h4>Card Details</h4>
+						<form>
+							Name on Card:<br>
+							<input type="text" name="name"><br>
+							Card Number:<br>
+							<input type="number" name="card_num"><br>
+							Expiration Date:<br>
+							<input type="date" name="card_num"><br>
+							CVV:<br>
+							<input type="password" name="card_num"><br>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+  <!--button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+    Choose an Option
+  </button>
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">All Visa/MasterCard Debit Cards</a></li>
+    <li><a class="dropdown-item" href="#">All Rupay Debit Cards</a></li>
+    <li><a class="dropdown-item" href="#">All SBI Maestro Debit Cards</a></li>
+  </ul-->
+  <!--div class="dropdown-menu">
+    <a class="dropdown-item" href="#">All Visa/MasterCard Debit Cards</a>
+    <a class="dropdown-item" href="#">All Rupay Debit Cards</a>
+    <a class="dropdown-item" href="#">All SBI Maestro Debit Cards</a>
+  </div-->
+</div>
+<p>
+<div class="radio">
+    <label><input type="radio" name="optradio">Netbanking</label>
+</div>
+ <div class="form-row">
+  	<div class="col-md-6 mb-3">
+      <label for="validationCustom03">Choose an Option</label>
+      <select class="form-control" id="sel1" required>
+      	<option value="" selected disabled>Please select</option>
+    <option>HDFC</option>
+    <option>ICICI</option>
+    <option>SBI</option>
+    </select>
+      <div class="invalid-feedback">
+        Select a Category
       </div>
-      <div class="dropdown">
-        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-          Choose an Option
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">HDFC</a>
-          <a class="dropdown-item" href="#">ICICI</a>
-          <a class="dropdown-item" href="#">SBI</a>
-        </div>
-      </div>
-    </p>
-    <p>
-      <button type="button" class="btn btn-success pull-right"><b>Place Order and Pay</b></button>
-    </p>
+    </div>
+</div>
+
+<!--div class="dropdown">
+  <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+    Choose an Option
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">HDFC</a>
+    <a class="dropdown-item" href="#">ICICI</a>
+    <a class="dropdown-item" href="#">SBI</a>
   </div>
+  </div-->
+  </p>
+  <p>
+      <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal1"><b>Place Order and Pay</b></button>
+  </p>
+ </div>
 </div>
-</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal1" role="dialog" >
+			<div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--h4 class="modal-title">Order Confirmed</h4-->
+					</div>
+					<div class="modal-body">
+						<p>Congratulations your order has been placed!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
+					</div>
+				</div>
+
+			</div>
+		</div>

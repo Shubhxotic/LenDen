@@ -256,7 +256,13 @@ router.get("/contact",function(req,res,next){
   res.render('contactus', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
   css: ['account.css'], authenticated: req.session.email
 });
-})
+});
+
+router.get("/about",function(req,res,next){
+  res.render("about_component", {authenticated: req.session.email
+});
+});
+
 
 
 router.get("/contactfromthismail",function(req,res,next){
@@ -267,7 +273,7 @@ router.get("/giftcards",function(req,res,next){
   res.render('giftcards', {authenticated: req.session.email });
 })
 router.get("/giftfromthismail",function(req,res,next){
-  res.render('giftfromthismail', {authenticated: req.session.email });
+  res.render('giftcards', {authenticated: req.session.email });
 })
 
 

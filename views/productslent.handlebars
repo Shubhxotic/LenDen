@@ -1,4 +1,4 @@
-
+{{#if authenticated}}
 <div class="w3-main" style="margin-left:300px;">
  <header class="w3-container" style="padding-top:22px">
     <h5 style=" font-style: "><b> Products Lent </b></h5>
@@ -56,3 +56,10 @@
   </div>
 </div>
 
+{{else}}
+<br><br>
+<center><h1>Not authenticated!</h1></center>
+<center><h4>Please Sign-up if you are a new user or Sign-in to continue.</h4></center>
+<center><h2>............................................................</h2></center>
+
+{{/if}}

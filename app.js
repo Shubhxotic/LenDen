@@ -23,6 +23,10 @@ var category=require('./routes/categories');
 var Subcategory = require('./routes/subcategories');
 var Product = require('./routes/products');
 var Parameters = require('./routes/parameters');
+var Contact = require('./routes/contactfromthismail');
+//var Contactus = require('./routes/contactus');
+var Giftfrommail = require('./routes/giftfromthismail');
+
 
 var app = express();
 
@@ -64,6 +68,8 @@ app.use('/Category',category);
 app.use('/Subcategory',Subcategory);
 app.use('/Product',Product);
 app.use('/Parameters',Parameters);
+app.use('/contactfromthismail',Contact);
+app.use('/giftfromthismail',Giftfrommail);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
@@ -83,10 +84,12 @@ router.get("/profile/prodlent",function(req,res){
       console.log(JSON.stringify(User));
       x={User_id:  mongojs.ObjectId(User._id)};
       console.log("x=" +User._id);
-      db.Product.find({User_id: User._id}, function(err, Product){
+      db.Product.find({User_id:  ""+User._id}, function(err, Product){
       if(err){
+        console.log("error");
         res.send(err);
       }
+      // res.json(Product);
       console.log("Products-======= "+JSON.stringify(Product));
       res.render('productslent', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
       css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products:Product
@@ -118,18 +121,45 @@ router.get("/profile/prodborrowed",function(req,res,next){
       // let x=User["Wish"someobj==="+someobj+"\n\n\n\n");
       var po={User_id: mongojs.ObjectId(User._id)}
       console.log("aopdjpoasdpasopdaspd====="+JSON.stringify(po));
-      db.ProductsDen.findOne({User_id: mongojs.ObjectId("5ae2104ae335af6c7f1d8a60")} , function(err, Product){
-          if(err){
+      db.ProductsDen.find({User_id:  ""+User._id},function(err, Product){
+        if(err){
             res.send(err);
+        }
+        // res.json(Product);
+        console.log("Products:- "+JSON.stringify(Product));
+        queries=[]
+        for(var i=0;i<Product.length;i++)
+        {
+          query={}
+          query["_id"]=mongojs.ObjectId(Product[i].Product_id);
+          queries.unshift(query);
+          console.log(JSON.stringify(query));
+        }
+        console.log("Queries: -- "+queries+" \n\n\n\n\n\n");
+        console.log(JSON.stringify({$or: queries}));
+        db.Product.find({$or: queries}, function(err, Product){
+          if(err){
+            res.json(err);
           }
-          else{
-            console.log("PRODUCT:- Product"+ JSON.stringify(Product)+"\n\n");
-            // res.render("navbar", {authenticated: req.session.email, Products: Product});
-            res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
-              css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products: Product
-            });
-          }
+          console.log("Products borrowed=== "+JSON.stringify(Product)+"\n\n\n\n\n");
+          res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+          css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products: Product
         });
+      });  
+    });
+
+      // db.ProductsDen.findOne({User_id: mongojs.ObjectId("5ae2104ae335af6c7f1d8a60")} , function(err, Product){
+      //     if(err){
+      //       res.send(err);
+      //     }
+      //     else{
+      //       console.log("PRODUCT:- Product"+ JSON.stringify(Product)+"\n\n");
+      //       // res.render("navbar", {authenticated: req.session.email, Products: Product});
+            // res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
+            //   css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products: Product
+            // });
+      //     }
+      //   });
       }
   
   
@@ -165,7 +195,9 @@ router.get("/profile/wishlist",function(req,res,next){
         console.log(typeof(query));
           someobj={};
           someobj["$or"]=query;
-          console.log("someobj==="+someobj+"\n\n\n\n");
+          console.log("Query:- "+query);
+          console.log("someobj==="+JSON.stringify(someobj)+"\n\n\n\n");
+          console.log(JSON.stringify({$or: query})+"\n\n\n\n");
       db.Product.find( {$or: query}, function(err, Product){
           if(err){
             res.send(err);
@@ -181,7 +213,7 @@ router.get("/profile/wishlist",function(req,res,next){
 });
 
 router.get("/profile/lendencred",function(req,res,next){
-
+  console.log({email: req.session.email});
   db.User.findOne({email: req.session.email}, function(err, User){
     if(err){
       res.send(err);

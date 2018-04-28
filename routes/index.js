@@ -359,20 +359,59 @@ router.get('/upload', function(req, res, next){
   res.render("upload_item",{authenticated: req.session.email});
 });
 
-router.post('/upload', function(req, res, next){
+// router.post('/upload', function(req, res, next){
+//   var task = req.body;
+//   db.Category.save(task, function(err, task){
+//     if(err){
+//       res.send(err);
+//       res.render("upload",{data: req.body,status:'Failed!', authenticated: req.session.email});
+//     }
+//     res.json(task);
+//     res.render("addProduct",{data: req.body,status:'Added!', authenticated: req.session.email});
+//   }
+// );
+// });
+
+router.route('/upload').post(function(req, res, next){
   var task = req.body;
-  db.Category.save(task, function(err, task){
+  
+  console.log(task);
+  db.User.findOne({ email: req.session.email }, function(err, User){
     if(err){
       res.send(err);
-      res.render("upload",{data: req.body,status:'Failed!', authenticated: req.session.email});
     }
-    res.json(task);
-    res.render("addProduct",{data: req.body,status:'Added!', authenticated: req.session.email});
-  }
-);
-});
-
-
+    console.log("User Extracted =  "+JSON.stringify(User)+"\n\n\n");
+  task['User_id'] = User._id;
+  console.log(task['User_id']);
+  db.Category.findOne({ CategoryName: task.Category}, function(err, category){
+    if(err){
+      res.send(err);
+    }
+    console.log("category: "+JSON.stringify(category));
+  
+      task['Cat_id'] = category.Cat_id;
+       console.log(task.SubCategory);
+       console.log(typeof(task.SubCategory));
+       console.log({ "SubcategoryName" : ""+task.SubCategory});
+  
+  console.log(task);
+  console.log(task.filebutton);
+      db.Product.save(task, function(err, task){
+  
+          if(err){
+              res.send(err);
+              res.render("upload",{data: req.body,status:'Failed!', authenticated: req.session.email});
+          }
+  
+       });
+       //console.log("upload done");
+        // res.json(task);
+        res.redirect("/profile/prodlent");
+        //res.render("addProduct",{data: req.body,status:'Added!', authenticated: req.session.email});
+      }
+    );
+  });
+  });
 router.route("/addtocart/:productid").post(function (req, res) {
   db.User.findOne({email: req.session.email}, function(err, User){
     if(err){

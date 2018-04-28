@@ -95,16 +95,16 @@ router.post('/signup', function(req, res, next){
             text : 'Yayy! it finally worked!'
         }
         console.log(mailOptions);
-        // smtpTransport.sendMail(mailOptions, function(error, response){
-        //  if(error){
-        //         console.log(error);
-        //     res.end("error");
-        //  }else{
-        //         console.log("Message sent");
-        //         res.redirect("/");
-        //     //res.end("sent");
-        //   }
-        //     });
+        smtpTransport.sendMail(mailOptions, function(error, response){
+         if(error){
+                console.log(error);
+            res.end("error");
+         }else{
+                console.log("Message sent");
+                res.redirect("/");
+            //res.end("sent");
+          }
+            });
         res.redirect("/");
         });
     });

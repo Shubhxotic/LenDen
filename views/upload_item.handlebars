@@ -1,0 +1,362 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title>Upload Item</title>
+	<link rel="stylesheet" type="text/css" href="upload_item.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="card col-md-8">
+		<ul class="list-group list-group-flush">
+		<div class="card-body">
+			<h4 class="card-title">Upload An Item</h4>
+			<br>
+	<form class="needs-validation" novalidate>
+		
+			<li class="list-group-item">
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom01">Item Name*</label>
+      <input type="text" class="form-control" id="validationCustom01" placeholder="Item name" required>
+      <div class="invalid-feedback">
+        Please fill the item's name
+      </div>
+    </div>
+  </div>
+
+    <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom02">Item Description*</label>
+      <textarea class="form-control" rows="5" id="validationCustom02" placeholder="Enter Product Description" required></textarea>
+       <div class="invalid-feedback">
+        Please add a Product Description
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="form-row">
+  	<div class="col-md-6 mb-3">
+      <label for="validationCustom03">Category*</label>
+      <select class="form-control" id="sel1" required>
+      	<option value="" selected disabled>Please select</option>
+    <option>Home Appliances</option>
+    <option>Books</option>
+    <option>Clothes</option>
+    <option>Transport and Vehicles</option>
+    <option>Fitness</option>
+    <option>Furniture</option>
+    <option>Electronics</option>
+    <option>Accessories and Jewellery</option>
+    <option>Household Utilities</option>
+    <option>Luggage and Backpacks</option>
+    <option>Sports and Hobbies</option>
+    <option>Footwear</option>
+    </select>
+      <div class="invalid-feedback">
+        Select a Category
+      </div>
+    </div>
+</div>
+<br>
+
+<label for="validationCustom04">Upload Pictures</label>
+<div class="form-row">
+	<div class="col-md-4 mb-3">
+      <input id="filebutton" name="filebutton" class="input-file" type="file">
+    </div>
+    <div class="col-md-4 mb-3">
+    	 <input id="filebutton" name="filebutton" class="input-file" type="file">
+    </div>
+    <div class="col-md-4 mb-3">
+    	 <input id="filebutton" name="filebutton" class="input-file" type="file">
+    </div>
+</div>
+
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom05">From Date*</label>
+      <input type="date" class="form-control" id="validationCustom05" required>
+      <div class="invalid-feedback">
+        Choose the From Date
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom06">To Date*</label>
+      <input type="date" class="form-control" id="validationCustom06" required>
+      <div class="invalid-feedback">
+        Choose the to Date
+      </div>
+    </div>
+  </div>
+  </li>
+
+  <li class="list-group-item">
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom07">Name*</label>
+      <input type="text" class="form-control" id="validationCustom07" placeholder="Name" required>
+      <div class="invalid-feedback">
+        Please fill your Name
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom08">Phone*</label>
+      <input type="text" class="form-control" id="validationCustom08" placeholder="Phone" required>
+      <div class="invalid-feedback">
+        Please fill your Phone number
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Upload Item</button>
+</form>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+		</div>
+		</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html> -->
+
+<div class="container-fluid">
+	<div class="card col-md-8 border-info" style="margin:auto; margin-top: 40px;margin-bottom: 40px;">
+		<ul class="list-group list-group-flush">
+		<div class="card-body">
+			<h4 class="card-title">Upload An Item</h4>
+			<br>
+	<form action = "/upload" method="POST" class="needs-validation" novalidate>
+
+			<li class="list-group-item">
+  <div class="form-row">
+    <div class="col-md-12 mb-3">
+      <label for="validationCustom01">Item Name*</label>
+      <input type="text" class="form-control" id="validationCustom01" name = "ProductName" placeholder="Item name" required>
+      <div class="invalid-feedback">
+        Please fill the item's name
+      </div>
+    </div>
+  </div>
+
+    <div class="form-row">
+    <div class="col-md-12 mb-3">
+      <label for="validationCustom02">Item Description*</label>
+      <textarea class="form-control" rows="5" id="validationCustom02" name = "Description" placeholder="Enter Product Description" required></textarea>
+       <div class="invalid-feedback">
+        Please add a Product Description
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-row">
+  	<div class="col-md-12 mb-3">
+      <label for="validationCustom03">Category*</label>
+      <select name = "Category" class="form-control" id="sel1" required>
+      	<option value="" selected disabled> Please select </option>
+    <option>Home Appliances</option>
+    <option>Books</option>
+    <option>Clothes</option>
+    <option>Transport and Vehicles</option>
+    <option>Fitness</option>
+    <option>Furniture</option>
+    <option>Electronics</option>
+    <option>Accessories and Jewellery</option>
+    <option>Household Utilities</option>
+    <option>Luggage and Backpacks</option>
+    <option>Sports and Hobbies</option>
+    <option>Footwear</option>
+    </select>
+      <div class="invalid-feedback">
+        Select a Category
+      </div>
+    </div>
+</div>
+<br>
+
+<div class="form-row">
+    <div class="col-md-12 mb-3">
+      <label for="validationCustom09">Subcategory*</label>
+      <select name = "SubCategory" class="form-control" id="sel2" required>
+
+    </select>
+      <div class="invalid-feedback">
+        Select a Subcategory
+      </div>
+    </div>
+</div>
+<br>
+
+<div class="form-row">
+  <div class="col-md-12 mb-3">
+    <label for="validationCustom01">Price*</label>
+    <input type="text" class="form-control" id="validationCustom01" name = "price" placeholder="Rs." required>
+    <div class="invalid-feedback">
+      Please fill the price of your product
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="form-row">
+  <div class="col-md-12 mb-3">
+    <label for="validationCustom01">Product Image*</label>
+    <input type="text" class="form-control" id="validationCustom01" name = "ProductImage" placeholder="Image URL" required>
+    <div class="invalid-feedback">
+      Please enter the URL of your product image
+    </div>
+  </div>
+</div>
+<br>
+
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom05">From Date*</label>
+      <input type="date" name = "Len_Date" class="form-control" id="validationCustom05" required>
+      <div class="invalid-feedback">
+        Choose the From Date
+      </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom06">To Date*</label>
+      <input type="date" name = "Den_Date" class="form-control" id="validationCustom06" required>
+      <div class="invalid-feedback">
+        Choose the to Date
+      </div>
+    </div>
+  </div>
+  </li>
+
+
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Upload Item</button>
+</form>
+</div>
+</ul>
+</div>
+</div>
+<script>
+ (function() {
+
+  //setup an object fully of arrays
+  //alternativly it could be something like
+  //{"yes":[{value:sweet, text:Sweet}.....]}
+  //so you could set the label of the option tag something different than the name
+  var bOptions = {
+      "Home Appliances": ["Television", "Washing Machine", "Toasters", "Smart Assistants", "Microwave", "Juicer/Mixer", "Others"],
+      "Books": ["Leisurely Reads Educational","Leisurely Reads Professional", "Leisurely Reads Fiction","Leisurely Reads Non Fiction","Leisurely Reads Self Help Books", "Leisurely Reads Indian Writing", "Magazine Sports", "Magazine Men", "Magazine Women", "Newspaper National"],
+      "Clothes": ["Tops and Tunics","T Shirt and Shirts","Dresses and Skirts","Shorts Jeans and Capris","Sportswear","Sleep Wear","Kurti and Leggings","Sarees","Lehenga Cholis","Dupattas and Stoles","Sweaters and Pullovers","Sweatshirts","Jackets and Cardigan","Thermals","Shawls","Polos and Tshirts","Jeans, capris and Trousers","Suits and Blazers","Tie"],
+      "Transport and Vehicles": ["Cars", "Bike/Scooter", "Van", "Bus"],
+      "Fitness": ["Yoga Mats", "Gloves", "Dumbells", "Cardio Equipment", "Sippers and Shakers"],
+      "Furniture": ["Tables","Chairs","Mattresses","Sofas","Drawers","Almirahs/Cupboards"],
+      "Electronics": ["Laptops","Mobile Phones","Desktops PCs","Headphones and earphones","Wearable Technology","Computer Peripherals","Mobile Accessories"],
+      "Accessories and Jewellery": ["Necklaces","Earrings","Watches","Tiaras"],
+      "Household Utilities": ["Bucket and Mugs","Lawnmower","Ladder","Pillows","Mattresses"],
+      "Luggage and Backpacks": ["Suitcases and Trolley Bags","Purse","Handbags","Clutch","Backpack and Laptop Bag", "Briefcases"],
+      "Sports and Hobbies": ["Balls","Racquets","Cricket Bat","Stumps","Hockey Sticks"],
+      "Footwear": ["Sports Shoes","Formal Shoes","Casual Shoes","Sandals","Heels","Wedges","Flats","Flip Flop","Loafers"]
+    };
+
+
+  var A = document.getElementById('sel1');
+  var B = document.getElementById('sel2');
+
+  //on change is a good event for this because you are guarenteed the value is different
+  A.onchange = function() {
+    //clear out B
+    B.length = 0;
+    //get the selected value from A
+    var _val = this.options[this.selectedIndex].value;
+    //loop through bOption at the selected value
+    for (var i in bOptions[_val]) {
+      //create option tag
+      var op = document.createElement('option');
+      //set its value
+      op.value = bOptions[_val][i];
+      //set the display label
+      op.text = bOptions[_val][i];
+      //append it to B
+      B.appendChild(op);
+    }
+  };
+  //fire this to update B on load
+  A.onchange();
+
+})();
+</script>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+

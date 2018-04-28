@@ -34,7 +34,7 @@ router.get("/Category/:categoryId", function(req,res,next){
                 }
                 
                 //Render the template   
-                res.render("subcat_filters",{Products: Products, Subcategories: Subcategories, Categories:Category, authenticated: req.session.email});
+                res.render("subcat_filters",{Products: Products,    Subcategories: Subcategories, Categories:Category, authenticated: req.session.email});
             })
             //Render the template
             // res.render("subcat_filters",{Products: Products});

@@ -14,6 +14,10 @@
             <div class="mycart col-sm-10 b0b">
               <strong>Product Name</strong> : {{this.ProductName}}<br>
               <strong>Cost</strong> : Rs. {{this.Price}}<br>
+              {{#if this.Len_Date}}
+              <strong>Rented On</strong> :  {{this.Len_Date}} 
+              {{!-- <strong>Cost</strong> : Rs. {{this.Len_Date}} --}}
+              {{/if}}
               {{!-- <strong>Quantity</strong> : 2<br> --}}
             </div>
           {{/each}}

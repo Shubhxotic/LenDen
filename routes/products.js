@@ -36,7 +36,7 @@ router.get('/:id', function(req, res, next){
             res.send(err);
         }
       //   res.json(Product);    
-      res.render("lenden_pd",{Product: Product});
+      res.render("lenden_pd",{Product: Product, authenticated: req.session.email});
     });
   });
 module.exports = router;

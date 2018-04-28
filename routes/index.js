@@ -84,7 +84,7 @@ router.get("/profile/prodlent",function(req,res){
       console.log(JSON.stringify(User));
       x={User_id:  mongojs.ObjectId(User._id)};
       console.log("x=" +User._id);
-      db.Product.find({User_id:  ""+User._id}, function(err, Product){
+      db.Product.find({User_id:  mongojs.ObjectId(""+User._id)}, function(err, Product){
         if(err){
           console.log("error");
           res.send(err);
@@ -137,7 +137,7 @@ router.get("/profile/prodborrowed",function(req,res,next){
         }
         console.log("Queries: -- "+queries+" \n\n\n\n\n\n");
         console.log(JSON.stringify({$or: queries}));
-        db.Product.find({$or: queries}, function(err, Product){
+        db.Product.find({$or: queries}).sort({Len_Date : -1}).toArray(function(err, Product){
           if(err){
             res.json(err);
           }
@@ -145,8 +145,8 @@ router.get("/profile/prodborrowed",function(req,res,next){
           res.render('productsborrowed', {csslinks: ['https://www.w3schools.com/w3css/4/w3.css','https://fonts.googleapis.com/css?family=Raleway'],
           css: ['account.css'], layout: "profilepages", authenticated: req.session.email, Products: Product
         });
-      });  
-    });
+      });
+    });  
     
     // db.ProductsDen.findOne({User_id: mongojs.ObjectId("5ae2104ae335af6c7f1d8a60")} , function(err, Product){
     //     if(err){
@@ -259,8 +259,7 @@ router.get("/contact",function(req,res,next){
 });
 
 router.get("/about",function(req,res,next){
-  res.render("about_component", {authenticated: req.session.email
-});
+  res.render("About_Us", {css:['About_Us.css'], authenticated: req.session.email});
 });
 
 
@@ -514,24 +513,27 @@ router.route("/buying/:productid").get(function (req, res) {
       User["Cart"]= cart.join(",");
       console.log("User.cart== "+User.Cart);
       //Remove from Cart
-      db.User.update({_id: mongojs.ObjectId(""+User._id)},User ,function(err,User){
+      db.User.update({_id: mongojs.ObjectId(""+User._id)},User ,function(err,updUser){
         if(err){
-          res.json(User);
+          res.json(err);
         }
         else{
-          console.log(JSON.stringify(User));
+          console.log(JSON.stringify(updUser));
           console.log("Successfully Bought");
           // res.redirect("/");
           
           //Add to Product Den
           task={};
           task["Product_id"]=req.params.productid;
-          task["User_id"]= User._id;
+          task["User_id"]= ""+User._id;
           task["Quality_id"]="11";
           task["Quality_before"]="1,2,3,4";
           task["Quality_after"]="1,2,3,4";
           task["Len_Date"]="2018-04-20";
           task["Den_Date"]="2018-05-11";
+
+          console.log("Prod Den-=== "+JSON.stringify(task)+"\n\n");
+
           db.ProductsDen.save(task, function(err, user){
             if(err){
               res.send(err);

@@ -5,7 +5,7 @@ var db = mongojs("mongodb://lenden2:lenden123@ds237389.mlab.com:37389/lenden", [
 
 var Category= require("../models/Subcategory");
 
-    
+
 
 // console.log("In subcategories")
 router.get('/all', function(req, res, next){
@@ -23,6 +23,10 @@ router.get("/Category/:categoryId", function(req,res,next){
         if(err){
             res.send(err);
         }
+        db.Category.findOne({"Cat_id": req.params.categoryId}, function(err, Categor){
+            if(err){
+                res.send(err);
+            }
         db.Product.find({"Cat_id": req.params.categoryId}, function(err, Products){
             if(err){
                 res.json(err);
@@ -32,15 +36,48 @@ router.get("/Category/:categoryId", function(req,res,next){
                 if(err){
                     res.json(err);
                 }
-                
-                //Render the template   
-                res.render("subcat_filters",{Products: Products,    Subcategories: Subcategories, Categories:Category, authenticated: req.session.email});
+
+                //Render the template
+                console.log(JSON.stringify(Categor["Cat_id"]));
+                res.render("subcat_filters",{Products: Products, Categ: Categor["Cat_id"], Subcategories: Subcategories, Categories:Category, authenticated: req.session.email});
             })
             //Render the template
             // res.render("subcat_filters",{Products: Products});
         })
     })
 })
+})
+
+router.get('/Category/:categoryId/sort', function(req, res, next){
+  db.Category.find(function(err, Category){
+      if(err){
+          res.send(err);
+      }
+      db.Category.findOne({"Cat_id": req.params.categoryId},function(err, Categ){
+          if(err){
+              res.send(err);
+          }
+          console.log(JSON.stringify(Categ["Cat_id"]));
+      db.Product.find({"Cat_id": req.params.categoryId}).sort({ Price: 1 }).toArray(function(err, Products){
+            if(err){
+                res.send(err);
+            }
+
+            //console.log(Products);
+          //Get the Subcategory Names
+          db.Subcategory.find({"Cat_id": req.params.categoryId}, function(err, Subcategories){
+              if(err){
+                  res.json(err);
+              }
+              //Render the template
+              //console.log("URL="+req.get("host")+req.originalUrl);
+              res.render("subcat_filters",{Products: Products, Subcategories: Subcategories, Categ : Categ["Cat_id"], Categories:Category, authenticated: req.session.email});
+              //res.render("subcat_filters",{Products: Products, authenticated: req.session.email});
+          })
+      })
+  })
+})
+});
 
 
 router.get("/Subcategory/:subcategoryId", function(req,res,next){
@@ -49,7 +86,7 @@ router.get("/Subcategory/:subcategoryId", function(req,res,next){
     db.Category.find(function(err, Category){
         if(err){
             res.send(err);
-        }           
+        }
         db.Product.find({"Subcat_id": req.params.subcategoryId}, function(err, Products){
                 if(err){
                     res.json(err);
@@ -104,3 +141,4 @@ router.post('/add', function(req, res, next){
 });
 
 module.exports = router;
+

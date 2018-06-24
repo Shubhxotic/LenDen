@@ -103,7 +103,7 @@ router.get("/Subcategory/:subcategoryId", function(req,res,next){
                         res.json(err);
                     }
                 // res.json(Products);
-                res.render("subcat_filters",{Products: Products, Subcategories:Subcategories, Categories:Category   });
+                res.render("subcat_filters",{Products: Products, Subcategories:Subcategories, Categories:Category , authenticated: req.session.email   });
             })
         })
     })

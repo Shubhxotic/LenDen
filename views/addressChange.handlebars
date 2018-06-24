@@ -11,12 +11,17 @@
         <form class="form-group" method="POST" action="/user/changeaddress">
          <h6>Shipping Address:</h6>
          <textarea rows="5" cols="50" name="address" value=""></textarea><br><br>
-         <input class="btn btn-success"  type="submit" value="Save Changes">
+         <a href="#" class="btn btn-success"  type="submit" id="savebt">Save Changes</a>
         </form>
       </div>
     </div>
   </div>
 </div>
+<script>
+  $("#savebt").click(function(){
+    alert("Address Changed");
+  })
+</script>
 {{else}}
 <br><br>
 <center><h1>Not authenticated!</h1></center>

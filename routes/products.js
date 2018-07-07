@@ -14,14 +14,6 @@ router.get('/all', function(req, res, next){
   });
 });
 
-router.get('/Product/:id', function(req, res, next){
-  db.Product.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, Product){
-      if(err){
-          res.send(err);
-      }
-      res.json(Product);    
-  });
-});
 
 router.get('/add', function(req, res, next){
   res.render("addProduct");
@@ -37,4 +29,14 @@ router.post('/add', function(req, res, next){
       });
 });
 
+
+router.get('/:id', function(req, res, next){
+    db.Product.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, Product){
+        if(err){
+            res.send(err);
+        }
+      //   res.json(Product);    
+      res.render("lenden_pd",{Product: Product, authenticated: req.session.email});
+    });
+  });
 module.exports = router;

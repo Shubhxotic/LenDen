@@ -1,65 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Choose a Payment Method</title>
-	<link rel="stylesheet" type="text/css" href="payment_portal.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Logo</a>
-  <div class="collapse navbar-collapse">
-  <div class="col-2"></div>
-  <form class="form-inline my-2 my-lg-0 col-6 row">
-        <input class="form-control mr-sm-2 col-10" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-info my-2 my-sm-0 col-1" type="submit"><i class="fa fa-search"></i></button>
-      </form>
-     <div class="col-1"></div>
-      <div class="col-3">        
-        <button class="btn btn-info pull-right">My Account</button>
-      </div>
-    </div>
-</nav>
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Accessories</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Furniture</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Clothes</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Footwear</a>
-    </li>
-        <li class="nav-item">
-      <a class="nav-link" href="#">Electronics</a>
-    </li>
-        <li class="nav-item">
-      <a class="nav-link" href="#">Appliances</a>
-    </li>
-        <li class="nav-item">
-      <a class="nav-link" href="#">Books</a>
-    </li>
-        <li class="nav-item">
-      <a class="nav-link" href="#">Fitness</a>
-    </li>
-        <li class="nav-item">
-      <a class="nav-link" href="#">Vehicles</a>
-    </li>
-        <li class="nav-item">
-      <a class="nav-link" href="#">Backpacks</a>
-    </li>
-  </ul>
-</nav>
-
-<br>
 <center><h1>Select a Payment Method</h1></center>
 <div class="col-lg-10 col-xs-12 card payment-methods">
   <div class="card-body">
@@ -73,20 +11,87 @@
   <label><input type="radio" name="optradio">Debit Card</label>
 </div>
 <div class="dropdown">
-  <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+	 <div class="form-row">
+  	<div class="col-md-6 mb-3">
+      <label for="validationCustom03">Choose an Option</label>
+      <select class="form-control" id="sel1" required>
+      	<option value="" selected disabled>Please select</option>
+    <option>All Visa/MasterCard Debit Cards</option>
+    <option>All Rupay Debit Cards</option>
+    <option>All SBI Maestro Debit Cards</option>
+    </select>
+      <div class="invalid-feedback">
+        Select a Category
+      </div>
+    </div>
+</div>
+<!-- Trigger the modal with a button -->
+		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >Enter Credentials</button>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog" >
+			<div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--h4 class="modal-title">Card Details </h4-->
+					</div>
+					<div class="modal-body">
+						<h4>Card Details</h4>
+						<form>
+							Name on Card:<br>
+							<input type="text" name="name"><br>
+							Card Number:<br>
+							<input type="number" name="card_num"><br>
+							Expiration Date:<br>
+							<input type="date" name="card_num"><br>
+							CVV:<br>
+							<input type="password" name="card_num"><br>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+  <!--button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
     Choose an Option
   </button>
-  <div class="dropdown-menu">
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">All Visa/MasterCard Debit Cards</a></li>
+    <li><a class="dropdown-item" href="#">All Rupay Debit Cards</a></li>
+    <li><a class="dropdown-item" href="#">All SBI Maestro Debit Cards</a></li>
+  </ul-->
+  <!--div class="dropdown-menu">
     <a class="dropdown-item" href="#">All Visa/MasterCard Debit Cards</a>
     <a class="dropdown-item" href="#">All Rupay Debit Cards</a>
     <a class="dropdown-item" href="#">All SBI Maestro Debit Cards</a>
-  </div>
+  </div-->
 </div>
 <p>
 <div class="radio">
     <label><input type="radio" name="optradio">Netbanking</label>
 </div>
-<div class="dropdown">
+ <div class="form-row">
+  	<div class="col-md-6 mb-3">
+      <label for="validationCustom03">Choose an Option</label>
+      <select class="form-control" id="sel1" required>
+      	<option value="" selected disabled>Please select</option>
+    <option>HDFC</option>
+    <option>ICICI</option>
+    <option>SBI</option>
+    </select>
+      <div class="invalid-feedback">
+        Select a Category
+      </div>
+    </div>
+</div>
+
+<!--div class="dropdown">
   <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
     Choose an Option
   </button>
@@ -95,91 +100,31 @@
     <a class="dropdown-item" href="#">ICICI</a>
     <a class="dropdown-item" href="#">SBI</a>
   </div>
-  </div>
+  </div-->
   </p>
   <p>
-      <button type="button" class="btn btn-success pull-right"><b>Place Order and Pay</b></button>
+      <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal1"><b>Place Order and Pay</b></button>
   </p>
  </div>
 </div>
 
-  <footer>
-    <div class="footer" id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> LenDen </h3>
-                    <ul>
-                        <li> <a href="#"> About Us </a> </li>
-                        <li> <a href="#"> LenDen Stories </a> </li>
-                        <li> <a href="#"> Gift Card </a> </li>
-                        <li> <a href="#"> Lend on LenDen </a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Let Us Help You </h3>
-                    <ul>
-                        <li> <a href="#"> Your Account </a> </li>
-                        <li> <a href="#"> Rent Protection Policy </a> </li>
-                        <li> <a href="#"> LenDen Assistant </a> </li>
-                        <li> <a href="#"> Payment </a> </li>
-            <li> <a href="#"> Shipping </a> </li>
-            <li> <a href="#"> Cancellation and Returns </a> </li>
-            <li> <a href="#"> FAQ </a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Contact Us </h3>
-                    <ul>
-                        <li> <a href="#"> Phone: 7388957666 </a> </li>
-                        <li> <a href="#"> Write Us on: lenden@gmail.com </a> </li>
-                        <li> <a href="#"> Facebook </a> </li>
-                        <li> <a href="#"> Twitter </a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Office Address </h3>
-                    <ul>
-                        <li> <a href="#">  NH91, Tehsil Dadri, </a> </li>
-                        <li> <a href="#"> Gautam Buddha Nagar, </a> </li>
-                        <li> <a href="#"> Greater Noida, </a> </li>
-                        <li> <a href="#"> Uttar Pradesh 201314 </a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-                    <h3> Subscribe </h3>
-                    <ul>
-                        <li>
-                            <div class="input-append newsletter-box text-center">
-                                <input type="text" class="full text-center" placeholder="Email ">
-                                <button class="btn bg-gray" type="button"> Submit <i class="fa fa-long-arrow-right"> </i> </button>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="social">
-                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
-                    </ul>
-                </div>
-            </div> 
-        </div> 
-    </div>
-    
-    <div class="footer-bottom">
-        <div class="container">
-            <p class="pull-left">Copyright © LenDen 2018. All right reserved.</p>
-            <div class="pull-right">
-                <ul class="nav nav-pills payments">
-                  <li><i class="fa fa-cc-visa"></i></li>
-                    <li><i class="fa fa-cc-mastercard"></i></li>
-                    <li><i class="fa fa-cc-paytm"></i></li>
-                </ul> 
-            </div>
-        </div>
-    </div>
-</footer>
-</body>
-</html>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal1" role="dialog" >
+			<div class="modal-dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--h4 class="modal-title">Order Confirmed</h4-->
+					</div>
+					<div class="modal-body">
+						<p>Congratulations your order has been placed!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
+					</div>
+				</div>
+
+			</div>
+		</div>

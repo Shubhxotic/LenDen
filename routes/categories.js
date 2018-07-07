@@ -12,7 +12,7 @@ router.get('/all', function(req, res, next){
           res.send(err);
       }
       res.json(Category);
-    res.render("homepage",{Categories: Category});
+    res.render("homepage",{Categories: Category , authenticated: req.session.email});
   });
 });
 
@@ -27,7 +27,7 @@ router.get('/Cat/:id', function(req, res, next){
 });
 
 router.get('/add', function(req, res, next){
-  res.render("addCategory", {layout: "main"});
+  res.render("addCategory", {layout: "main", authenticated: req.session.email});
 });
 
 router.post('/add', function(req, res, next){

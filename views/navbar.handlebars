@@ -1,57 +1,37 @@
 <div class="container">
 		<br>
 		<h1> <i>Shopping Cart &nbsp;</i><i class="fa fa-shopping-cart"  style="color: #444;"></i> </h1><br>
+		{{#each Products}}
 		<div class="card my-2">
 			<!-- <div class="card-header">
 				Featured
 			</div> -->
 			<div class="card-body row">
 				<div class="col-3">
-					<img src="https://rukminim1.flixcart.com/image/832/832/backpack/g/y/d/07171203-puma-backpack-echo-plus-original-imae8jq7fuxzdmeq.jpeg?q=70" class="img-fluid w-75 py-auto my-auto">
+					<img src="{{this.ProductImage}}" class="img-fluid w-75 py-auto my-auto">
 				</div>
 				<div class="col-9 my-auto">
-					<h5 class="card-title">Product Name}}</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-					<a href="#" class="btn btn-outline-success">Buy Now</a>
-					<a href="#" class="btn btn-outline-danger">Remove From Cart <i class="fa fa-trash "></i></a>
+					<h5 class="card-title">{{this.ProductName}}</h5>
+					{{!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+					<a href="/buying/{{this._id}}" class="btn btn-outline-success rentbtn">Rent Now</a>
+					<a href="/deleting/{{this._id}}" class="btn btn-outline-danger delbtn">Remove From Cart <i class="fa fa-trash "></i></a>
 					
-					<button class="btn  pull-right  mx-4">600.0</button> <!-- {{Price}} -->
-					<button class="btn btn-outline-danger  pull-right  "><i class="fa fa-minus"></i></button> <!-- {{Price}} -->
-					<button class="btn btn-outline-light  pull-right   text-dark">2</button>
-					<button class="btn btn-outline-success pull-right  "><i class="fa fa-plus"></i></button> <!-- {{Price}} -->
-				</div>
-			</div>
-
-		</div>
-		<div class="card my-2">
-			<!-- <div class="card-header">
-				Featured
-			</div> -->
-			<div class="card-body row">
-				<div class="col-3">
-					<img src="https://rukminim1.flixcart.com/image/832/832/backpack/g/y/d/07171203-puma-backpack-echo-plus-original-imae8jq7fuxzdmeq.jpeg?q=70" class="img-fluid w-75 py-auto my-auto">
-				</div>
-				<div class="col-9 my-auto">
-					<h5 class="card-title">{Product Name}}</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-					<a href="#" class="btn btn-outline-success">Buy Now</a>
-					<a href="#" class="btn btn-outline-danger">Remove From Cart <i class="fa fa-trash "></i></a>
-					
-					<button class="btn  pull-right  mx-4">600.0</button> <!-- {{Price}} -->
-					<button class="btn btn-outline-danger  pull-right  "><i class="fa fa-minus"></i></button> <!-- {{Price}} -->
-					<button class="btn btn-outline-light  pull-right   text-dark">2</button>
-					<button class="btn btn-outline-success pull-right  "><i class="fa fa-plus"></i></button> <!-- {{Price}} -->
+					<div class="btn  pull-right btn-secondary mx-4"><i class="fa fa-rupee"></i>{{this.Price}} /Day</div> <!-- {{Price}} -->
+					{{!-- <button class="btn btn-outline-danger  pull-right  "><i class="fa fa-minus"></i></button> <!-- {{Price}} --> --}}
+					{{!-- <button class="btn btn-outline-light  pull-right   text-dark">2</button> --}}
+					{{!-- <button class="btn btn-outline-success pull-right  "><i class="fa fa-plus"></i></button> <!-- {{Price}} --> --}}
 				</div>
 			</div>
 		</div>	
 			<div class=" row my-4">
 				<div class="col-9"></div>
-				<div class="col-3 row">
-					<span class="pull-right col-4 text-center my-auto"><i class="fa fa-rupee">1200.0</i></span>
-					<button class="btn btn-primary pull-right col-8 text-center">Buy Now</button>
+				<div class="col-3 row ">
+					{{!-- <span class="pull-right col-4 text-center my-auto"><i class="fa fa-rupee">1200.0</i></span> --}}
+						{{!-- <button class="btn btn-info col-8 pull-right text-center float-right b0b">Rent Now</button> --}}
 				</div>
 			</div>
-		<h1>Wishlist <i class="fa fa-heart" style="color: #B00;"></i></h1>
+		{{/each}}	
+		{{!-- <h1>Wishlist <i class="fa fa-heart" style="color: #B00;"></i></h1>
 		<!-- <div class="row mx-0 b0b" style="position: relative;width: 150%;">
 			<p>Spdposd</p>
 		</div> -->
@@ -94,6 +74,18 @@
 			<!-- <div class=" py-auto text-center" style="width: 2rem;" >
 				<div class=" my-auto"><i class=" fa fa-arrow-right"></i></div>
 			</div> -->
-		</div>
+		</div> --}}
 	</div>
-	<br><br>
+	<div class=" pb-4 pr-5">
+		<a href="/payment"><button class="btn btn-info float-right pull-right b0b">Proceed to Payment</button>	</a>
+		</div>
+	<br>
+	
+	<script>
+		$(".rentbtn").click(function(){
+			alert("Item Rentedd Successfully");
+		});
+		$(".delbtn").click(function(){
+			alert("Item Removed Successfully");
+		});
+	</script>

@@ -3,17 +3,35 @@
  		<a class="navbar-brand" href="/"><img src = "/static/lenden_logo.png" width="50px;"></a>
  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
  			<div class="col-2"></div>
- 			<form class="form-inline my-2 my-lg-0 col-6 row">
+ 			{{!-- <form class="form-inline my-2 my-lg-0 col-6 row">
  				<input class="form-control mr-sm-2 col-10" type="search" placeholder="Search" aria-label="Search">
  				<button class="btn btn-outline-info my-2 my-sm-0 col-1" type="submit"><i class="fa fa-search"></i></button>
- 			</form>
+ 			</form> --}}
+       <h2 class="col-6 text-center text-info">Len<img src = "/static/lenden_logo.png" width="50px;">en</h2>
  			<div class="col-1"></div>
 
- 			<div class="col-3">
- 				<!-- <p>Hiii {{name}}!!</p> -->
- 				<button class="btn btn-info pull-right" data-toggle="modal" data-target="#signUp">SIGN UP</button>
- 				<button class="btn btn-secondary pull-right mx-2" data-toggle="modal" data-target="#signIn">SIGN IN</button>
- 			</div>
+ 		
+
+
+{{#if authenticated }}
+    <div class="col-5 text-white row  ">
+        <a href="/upload" class="btn btn-outline-info text-info btn-upload col-3"><span>Upload Item</span></a>
+      
+      <div class="dd dropdown col-5 ">
+            <a href="/shoppingcart" class="col-2"><button class="btn btn-xs btn-dark "><i class="fa fa-shopping-cart fa-2x text-info"></i><label id="lblCartCount">1</label></button></a>
+          
+          <button class="btn btn-xs btn-dark dropdown-toggle text-info" data-toggle="dropdown"><a href="#"><i class="fa fa-user fa-2x text-info"></i></a></button>
+            <div class="list-dd dropdown-menu dropdown-menu-right text-white bg-white">
+              <a class="dropdown-item" href="/profile">Profile</a>
+              <a class="dropdown-item" href="/trackorder">Track Order</a>
+              <a class="dropdown-item" href="/contact">Contact Us</a>
+              {{!-- <a class="dropdown-item" href="#">Log In</a> --}}
+              <a class="dropdown-item" href="/users/logout">Log Out <i class="fa fa-sign-out"></i></a>
+            </div>
+      </div>
+      </div>
+{{else}}
+
   <!-- Modal -->
   <div class="modal fade" id="signIn" role="dialog">
     <div class="modal-dialog">
@@ -25,11 +43,11 @@
         </div>
         <div class="modal-body">
 
-      <form class="form-signin" action="users/signin" method="post">
+      <form class="form-signin" action="/users/signin" method="post">
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><br>
+        <input type="email"  name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><br>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required><br>
+        <input type="password" name="pass" id="inputPassword" class="form-control" placeholder="Password" required><br>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
@@ -58,17 +76,17 @@
         </div>
         <div class="modal-body">
 
-      <form class="form-signup"  action="users/signup" method="post">
+      <form class="form-signup"  action="/users/signup" method="post">
 	 <label for="inputName" class="sr-only">Name</label>
-        <input  type="text" id="inputName" class="form-control" placeholder="Name" required autofocus><br>
+        <input  name="username" type="text" id="inputName" class="form-control" placeholder="Name" required autofocus><br>
  	<label for="inputMobileNo" class="sr-only">Mobile Number</label>
-        <input id="inputMobileNo" class="form-control" placeholder="Mobile Number" required autofocus><br>
+        <input id="inputMobileNo" name="mobile_no" class="form-control" placeholder="Mobile Number" required autofocus><br>
 	<label for="inputAddress" class="sr-only">Address</label>
-        <input  type="text" id="inputAddress" class="form-control" placeholder="Address" required autofocus><br>
+        <input  type="text" name="address" id="inputAddress" class="form-control" placeholder="Address" required autofocus><br>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><br>
+        <input type="email" name = "email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><br>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required><br>
+        <input name = "pass" type="password" id="inputPassword" class="form-control" placeholder="Password" required><br>
   		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
       </form>
     </div>
@@ -79,6 +97,13 @@
 
     </div>
   </div>
+  	<div class="col-3">
+ 				<!-- <p>Hiii {{name}}!!</p> -->
+ 				<button class="btn btn-info pull-right" data-toggle="modal" data-target="#signUp">SIGN UP</button>
+ 				<button class="btn btn-secondary pull-right mx-2" data-toggle="modal" data-target="#signIn">SIGN IN</button>
+ 			</div>
+
+{{/if}}
 
  		</div>
  	</nav>

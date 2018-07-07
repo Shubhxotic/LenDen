@@ -3,7 +3,7 @@
   {{#each Categories}}
       <a class="nav-item col-1 m-0 p-0 nav-link font-15" href="/subcategory/Category/{{this.Cat_id}}">{{this.CategoryName}}</a>
   {{/each}}
-{{!--   
+{{!--
     <li class="nav-item">
       <a class="nav-link" href="#">Accessories</a>
     </li>
@@ -31,7 +31,7 @@
         <li class="nav-item">
       <a class="nav-link" href="#">Vehicles</a>
     </li>
-    
+
         <li class="nav-item">
       <a class="nav-link" href="#">Backpacks</a>
     </li> --}}
@@ -39,23 +39,23 @@
 </nav>
 
 <div class="container-fluid">
-	
+
 <br>
 	<div class="row">
     <div class="col-10 row">
 	{{#each Products}}
-  <div class="prod-display col-3 h-75" >
-      <div class="gallery col-xs-12">   
-       <a target="_blank" href="{{this.ProductImage}}">
-    <img src="{{this.ProductImage}}" alt="Pink Hair Dryer" class="w-100" style="height: 300px;">
+  <div class="prod-display col-3" >
+      <div class="gallery col-xs-12">
+       <a target="_blank" href="/product/{{this._id}}">
+    <img src="{{this.ProductImage}}" alt="" class="w-100" style="height: 300px;">
   </a>
   <div class="desc">
-  	<b>{{this.ProductName}}</b> 
-  	<br/> 
+  	<a href="/product/{{this._id}}"><b>{{this.ProductName}}</b> </a>
+  	<br/>
   	Price: Rs. {{this.Price}}/Day
   	<br/>
-  	<a href="/prodDesc/{{this.Product_id}}"><button type="button" class="btn btn-success "><i class="fa fa-shopping-cart"></i>Add To Cart</button></a>
-    <button type="button" class="btn btn-light  "><i class="fa fa-heart"></i>Add To Wishlist</button>
+  	<form method="POST" action="/addtocart/{{this._id}}"><button type="submit" class="btn btn-success cartadd" id=""><i class="fa fa-shopping-cart"></i>Add To Cart</button></form>
+    <form method="POST" action="/addtowishlist/{{this._id}}"><button type="submit" class="btn btn-light wishadd"><i class="fa fa-heart"></i>Add To Wishlist</button></form>
   </div>
   </div>
 	</div>
@@ -63,7 +63,7 @@
 	</div>
   <div class="cat-filters col-lg-2 col-xs-12">
 		{{!-- <p><strong><center>Subcategories and Filters</center></strong></p> --}}
-	 <div id="accordion">
+	<div id="accordion">
     <div class="card">
       <a class="card-header accDiv" class=" text-black" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
           Subcategories
@@ -87,21 +87,33 @@
            <form>
     <div class="form-check list-group m-0 p-0 w-100">
       <label class="form-check-label">
-        <p class="list-group-item m-0 text-success"> Price: Low to high</p>
+        <div class="list-group-item w-100">
+        <a href = "/subcategory/Category/{{Categ}}/sort/"  class="text-success">
+      <!--  <p class="list-group-item m-0 text-success">--> Price: Low to high</a>
+      </div>
       </label>
     </div>
     <div class="form-check list-group m-0 p-0 w-100">
-      <label class="form-check-label">
+      <!-- <label class="form-check-label">
         <p class="list-group-item m-0 text-success"> Highest Ratings First</p>
-      </label>
+      </label> -->
     </div>
   </form>
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 	</div>
 	</div>
 </div>
 <br>
+
+<script>
+  $(".cartadd").click(function(){
+      alert("Added to Cart Successfully");
+    });
+    $(".wishadd").click(function(){
+      alert("Added to Wishlist Successfully");
+    });
+</script>
 

@@ -1,39 +1,8 @@
 
-<body class="w3-white">
-
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-
-  <div class="w3-container w3-row">
-    <div class="w3-col s4">
-      <img src="https://n6-img-fp.akamaized.net/free-icon/profile-user_318-80283.jpg?size=338c&ext=jpg" class="img-fluid w-75 py-auto my-auto" class="w3-circle w3-margin-right" style="width:46px">
-    </div>
-    <div class="w3-col s8 w3-bar">
-    
-      <span><strong>Welcome</strong> User</span><br>
-   
-    </div>
-  </div>
-  <hr>
-  <div class="w3-container">
-    <h5>My Profile</h5>
-  </div>
-  <div class="w3-bar-block">
-  
-    <a href="personalinfo.html" class="w3-bar-item w3-button w3-padding ">Personal Information</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding ">Lenden Credits </a>
-    <a href="productslent.html" class="w3-bar-item w3-button w3-padding ">Products Lent</a>
-    <a href="productsborrowed.html" class="w3-bar-item w3-button w3-padding ">Products Borrowed</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding ">Product Wishlist</a>
-    <a href="personalinfo.html" class="w3-bar-item w3-button w3-padding ">Address</a>
-    <a href="giftcards.html" class="w3-bar-item w3-button w3-padding ">Gift Cards </a><br><br>
- 
-  </div>
-</nav>
-
+{{#if authenticated}}
 <div class="w3-main" style="margin-left:300px;">
 
-  
+
   <header class="w3-container" style="padding-top:22px">
     <h5><b> LenDen Credits </b></h5>
   </header>
@@ -42,14 +11,19 @@
     <div class="w3-quarter" style="padding-top:32px;">
       <div class="w3-container w3-pink w3-padding-16">
               <h4>CONGRATULATIONS!</h4><br>
-              <p>You have earned 100 LenDen points.</p>
+              <p>You have earned {{User.RewardPts}} LenDen points.</p>
       </div>
   </div>
 
   <div class="w3-half" style="padding-left:16px;">
       <div class="w3-container w3-white w3-padding-16">
-        <img src="creditpts.png">
+        <img src="/static/creditpts.png">
       </div>
     </div>
+    {{else}}
+    <br><br>
+    <center><h1>Not authenticated!</h1></center>
+    <center><h4>Please Sign-up if you are a new user or Sign-in to continue.</h4></center>
+    <center><h2>............................................................</h2></center>
 
-</body>
+    {{/if}}

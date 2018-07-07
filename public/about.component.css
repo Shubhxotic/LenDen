@@ -1,0 +1,12 @@
+.b0b{
+            border: 1px solid black;
+        }
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    padding-top: 20px;
+ }
+ .mytext{ text-align:"center";
+         font-family: "Times New Roman", Times, serif; }

@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var session = require('express-session');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -22,6 +23,10 @@ var category=require('./routes/categories');
 var Subcategory = require('./routes/subcategories');
 var Product = require('./routes/products');
 var Parameters = require('./routes/parameters');
+var Contact = require('./routes/contactfromthismail');
+//var Contactus = require('./routes/contactus');
+var Giftfrommail = require('./routes/giftfromthismail');
+
 
 var app = express();
 
@@ -49,7 +54,7 @@ app.set('view engine', 'handlebars');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(session({secret: 'ssshhhhh'}));
 app.use(cookieParser());
 app.use("/static",express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -63,6 +68,8 @@ app.use('/Category',category);
 app.use('/Subcategory',Subcategory);
 app.use('/Product',Product);
 app.use('/Parameters',Parameters);
+app.use('/contactfromthismail',Contact);
+app.use('/giftfromthismail',Giftfrommail);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
